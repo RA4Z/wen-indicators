@@ -1,5 +1,7 @@
 import { Modal } from "antd"
+import valores from 'data/valores.json'
 import LineIndicator from "./LineIndicator";
+import { useEffect, useState } from "react";
 
 interface Props {
     nome: string
@@ -7,6 +9,7 @@ interface Props {
     setIsIndicadorOpen: any
 }
 export default function Indicador(props: Props) {
+    const [data, setData] = useState<typeof valores[0]>()
     const handleOk = () => {
         props.setIsIndicadorOpen(false);
     };
@@ -14,14 +17,20 @@ export default function Indicador(props: Props) {
     const handleCancel = () => {
         props.setIsIndicadorOpen(false);
     };
+
+    useEffect(() => {
+        const valor = valores.filter(value => value.indicador === props.nome)[0]
+        setData(valor)
+    }, [props.nome])
+    
     return (
         <>
-            <Modal title={`Indicadores ${props.nome}`}
+            {data && <Modal title={`Indicadores ${props.nome}`}
                 width={'90vw'}
                 open={props.isIndicadorOpen} onOk={handleOk} onCancel={handleCancel}
                 footer={[]}>
-                <LineIndicator nome={props.nome} />
-            </Modal>
+                <LineIndicator data={data} />
+            </Modal>}
         </>
     )
 }

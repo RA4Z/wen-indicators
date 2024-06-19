@@ -1,13 +1,12 @@
 import { Line } from '@ant-design/plots'
-import valores from 'data/valores.json'
 import styles from './Indicador.module.scss'
 
 interface Props {
-    nome: string
+    data: any
 }
 
 export default function LineIndicator(props: Props) {
-    const data = valores.filter(valor => valor.indicador === props.nome)[0].dados
+    const data = props.data.dados
     const config = {
         data,
         xField: 'Mês',
