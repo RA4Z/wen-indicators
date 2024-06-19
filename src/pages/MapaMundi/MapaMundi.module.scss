@@ -1,0 +1,39 @@
+.app {
+    overflow: hidden;
+    text-align: center;
+    background-color: #dcd8d8;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: black;
+}
+
+.countries {
+    img {
+        height: 54px;
+        position: absolute;
+        cursor: pointer;
+        transition: .2s;
+
+        &:hover {
+            transform: scale(5);
+        }
+    }
+
+    &__brazil {
+        left: 34%;
+        top: 70%;
+    }
+
+    &__usa {
+        left: 20%;
+        top: 40%;
+    }
+
+    &__india {
+        right: 28.5%;
+        bottom: 43%;
+    }
+}

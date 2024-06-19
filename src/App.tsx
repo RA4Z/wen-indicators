@@ -1,4 +1,4 @@
-import MapaMundi from 'components/MapaMundi';
+import MapaMundi from 'pages/MapaMundi';
 
 function App() {
   return (
