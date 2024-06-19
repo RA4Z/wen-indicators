@@ -7,6 +7,7 @@ import styles from './MapaMundi.module.scss'
 import Indicadores from 'pages/Indicadores'
 import { useState } from 'react'
 import Indicador from 'pages/Indicador'
+import Logo from 'assets/logo.png'
 
 export default function MapaMundi() {
     const [country, setCountry] = useState('')
@@ -30,6 +31,7 @@ export default function MapaMundi() {
                 <img src={USA} onClick={() => selectCountry('usa')} className={styles.countries__usa} alt='Ícone dos Estados Unidos' />
                 <img src={Africa} onClick={() => selectCountry('africa')} className={styles.countries__africa} alt='Ícone da África do Sul' />
             </div>
+            <img title='Projeto Desenvolvido e Prototipado por Robert Aron Zimmermann' src={Logo} className={styles.logo} alt='Ícone da África do Sul' />
         </header>
     )
 }
