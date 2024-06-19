@@ -1,11 +1,10 @@
-import mapa from './assets/mapa-mundi.svg';
-import './App.css';
+import MapaMundi from 'components/MapaMundi';
 
 function App() {
   return (
-    <header className="App">
-      <img src={mapa} className="App-logo" alt="logo" />
-    </header>
+    <>
+      <MapaMundi />
+    </>
   );
 }
 
