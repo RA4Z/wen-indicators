@@ -1,0 +1,31 @@
+[
+    {
+        "id": "brasil",
+        "country": "Brasil",
+        "indicadores": [
+            "Prazos para Controle JGS",
+            "Kanban Eletrônico JGS",
+            "Kanban Eletrônico SBC"
+        ]
+    },
+    {
+        "id": "usa",
+        "country": "Estados Unidos",
+        "indicadores": [
+            "Faturamento WEM"
+        ]
+    },
+    {
+        "id": "india",
+        "country": "Índia",
+        "indicadores": [
+            "Motores Eólicos",
+            "Lorem ipsum"
+        ]
+    },
+    {
+        "id": "africa",
+        "country": "África do Sul",
+        "indicadores": []
+    }
+]
