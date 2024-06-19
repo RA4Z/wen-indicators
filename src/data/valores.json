@@ -1,296 +1,151 @@
 [
     {
         "indicador": "Planejado vs Realizado JGS",
-        "dados":[
+        "dados": [
             {
                 "Mês": "01\/2022",
-                "Plan": 79,
-                "Status": "Planejado"
+                "Planejado": 79,
+                "Realizado": 18
             },
             {
                 "Mês": "02\/2022",
-                "Plan": 126,
-                "Status": "Planejado"
+                "Planejado": 126,
+                "Realizado": 68
             },
             {
                 "Mês": "03\/2022",
-                "Plan": 140,
-                "Status": "Planejado"
+                "Planejado": 140,
+                "Realizado": 108
             },
             {
                 "Mês": "04\/2022",
-                "Plan": 106,
-                "Status": "Planejado"
+                "Planejado": 106,
+                "Realizado": 122
             },
             {
                 "Mês": "05\/2022",
-                "Plan": 144,
-                "Status": "Planejado"
+                "Planejado": 144,
+                "Realizado": 110
             },
             {
                 "Mês": "06\/2022",
-                "Plan": 119,
-                "Status": "Planejado"
+                "Planejado": 119,
+                "Realizado": 88
             },
             {
                 "Mês": "07\/2022",
-                "Plan": 133,
-                "Status": "Planejado"
+                "Planejado": 133,
+                "Realizado": 127
             },
             {
                 "Mês": "08\/2022",
-                "Plan": 151,
-                "Status": "Planejado"
+                "Planejado": 151,
+                "Realizado": 117
             },
             {
                 "Mês": "09\/2022",
-                "Plan": 111,
-                "Status": "Planejado"
+                "Planejado": 111,
+                "Realizado": 136
             },
             {
                 "Mês": "10\/2022",
-                "Plan": 136,
-                "Status": "Planejado"
+                "Planejado": 136,
+                "Realizado": 139
             },
             {
                 "Mês": "11\/2022",
-                "Plan": 126,
-                "Status": "Planejado"
+                "Planejado": 126,
+                "Realizado": 163
             },
             {
                 "Mês": "12\/2022",
-                "Plan": 78,
-                "Status": "Planejado"
+                "Planejado": 78,
+                "Realizado": 136
             },
             {
                 "Mês": "01\/2023",
-                "Plan": 111,
-                "Status": "Planejado"
+                "Planejado": 111,
+                "Realizado": 91
             },
             {
                 "Mês": "02\/2023",
-                "Plan": 155,
-                "Status": "Planejado"
+                "Planejado": 155,
+                "Realizado": 154
             },
             {
                 "Mês": "03\/2023",
-                "Plan": 148,
-                "Status": "Planejado"
+                "Planejado": 148,
+                "Realizado": 161
             },
             {
                 "Mês": "04\/2023",
-                "Plan": 122,
-                "Status": "Planejado"
+                "Planejado": 122,
+                "Realizado": 127
             },
             {
                 "Mês": "05\/2023",
-                "Plan": 165,
-                "Status": "Planejado"
+                "Planejado": 165,
+                "Realizado": 159
             },
             {
                 "Mês": "06\/2023",
-                "Plan": 150,
-                "Status": "Planejado"
+                "Planejado": 150,
+                "Realizado": 154
             },
             {
                 "Mês": "07\/2023",
-                "Plan": 150,
-                "Status": "Planejado"
+                "Planejado": 150,
+                "Realizado": 121
             },
             {
                 "Mês": "08\/2023",
-                "Plan": 164,
-                "Status": "Planejado"
+                "Planejado": 164,
+                "Realizado": 134
             },
             {
                 "Mês": "09\/2023",
-                "Plan": 129,
-                "Status": "Planejado"
+                "Planejado": 129,
+                "Realizado": 148
             },
             {
                 "Mês": "10\/2023",
-                "Plan": 138,
-                "Status": "Planejado"
+                "Planejado": 138,
+                "Realizado": 148
             },
             {
                 "Mês": "11\/2023",
-                "Plan": 124,
-                "Status": "Planejado"
+                "Planejado": 124,
+                "Realizado": 132
             },
             {
                 "Mês": "12\/2023",
-                "Plan": 66,
-                "Status": "Planejado"
+                "Planejado": 66,
+                "Realizado": 112
             },
             {
                 "Mês": "01\/2024",
-                "Plan": 91,
-                "Status": "Planejado"
+                "Planejado": 91,
+                "Realizado": 56
             },
             {
                 "Mês": "02\/2024",
-                "Plan": 130,
-                "Status": "Planejado"
+                "Planejado": 130,
+                "Realizado": 110
             },
             {
                 "Mês": "03\/2024",
-                "Plan": 144,
-                "Status": "Planejado"
+                "Planejado": 144,
+                "Realizado": 114
             },
             {
                 "Mês": "04\/2024",
-                "Plan": 152,
-                "Status": "Planejado"
+                "Planejado": 152,
+                "Realizado": 160
             },
             {
                 "Mês": "05\/2024",
-                "Plan": 155,
-                "Status": "Planejado"
-            },
-            {
-                "Mês": "01\/2022",
-                "Plan": 18,
-                "Status": "Realizado"
-            },
-            {
-                "Mês": "02\/2022",
-                "Plan": 68,
-                "Status": "Realizado"
-            },
-            {
-                "Mês": "03\/2022",
-                "Plan": 108,
-                "Status": "Realizado"
-            },
-            {
-                "Mês": "04\/2022",
-                "Plan": 122,
-                "Status": "Realizado"
-            },
-            {
-                "Mês": "05\/2022",
-                "Plan": 110,
-                "Status": "Realizado"
-            },
-            {
-                "Mês": "06\/2022",
-                "Plan": 88,
-                "Status": "Realizado"
-            },
-            {
-                "Mês": "07\/2022",
-                "Plan": 127,
-                "Status": "Realizado"
-            },
-            {
-                "Mês": "08\/2022",
-                "Plan": 117,
-                "Status": "Realizado"
-            },
-            {
-                "Mês": "09\/2022",
-                "Plan": 136,
-                "Status": "Realizado"
-            },
-            {
-                "Mês": "10\/2022",
-                "Plan": 139,
-                "Status": "Realizado"
-            },
-            {
-                "Mês": "11\/2022",
-                "Plan": 163,
-                "Status": "Realizado"
-            },
-            {
-                "Mês": "12\/2022",
-                "Plan": 136,
-                "Status": "Realizado"
-            },
-            {
-                "Mês": "01\/2023",
-                "Plan": 91,
-                "Status": "Realizado"
-            },
-            {
-                "Mês": "02\/2023",
-                "Plan": 154,
-                "Status": "Realizado"
-            },
-            {
-                "Mês": "03\/2023",
-                "Plan": 161,
-                "Status": "Realizado"
-            },
-            {
-                "Mês": "04\/2023",
-                "Plan": 127,
-                "Status": "Realizado"
-            },
-            {
-                "Mês": "05\/2023",
-                "Plan": 159,
-                "Status": "Realizado"
-            },
-            {
-                "Mês": "06\/2023",
-                "Plan": 154,
-                "Status": "Realizado"
-            },
-            {
-                "Mês": "07\/2023",
-                "Plan": 121,
-                "Status": "Realizado"
-            },
-            {
-                "Mês": "08\/2023",
-                "Plan": 134,
-                "Status": "Realizado"
-            },
-            {
-                "Mês": "09\/2023",
-                "Plan": 148,
-                "Status": "Realizado"
-            },
-            {
-                "Mês": "10\/2023",
-                "Plan": 148,
-                "Status": "Realizado"
-            },
-            {
-                "Mês": "11\/2023",
-                "Plan": 132,
-                "Status": "Realizado"
-            },
-            {
-                "Mês": "12\/2023",
-                "Plan": 112,
-                "Status": "Realizado"
-            },
-            {
-                "Mês": "01\/2024",
-                "Plan": 56,
-                "Status": "Realizado"
-            },
-            {
-                "Mês": "02\/2024",
-                "Plan": 110,
-                "Status": "Realizado"
-            },
-            {
-                "Mês": "03\/2024",
-                "Plan": 114,
-                "Status": "Realizado"
-            },
-            {
-                "Mês": "04\/2024",
-                "Plan": 160,
-                "Status": "Realizado"
-            },
-            {
-                "Mês": "05\/2024",
-                "Plan": 158,
-                "Status": "Realizado"
+                "Planejado": 155,
+                "Realizado": 158
             }
         ]
     }

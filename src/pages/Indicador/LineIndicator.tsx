@@ -1,4 +1,4 @@
-import { Line } from '@ant-design/plots'
+import { DualAxes } from '@ant-design/plots';
 import styles from './Indicador.module.scss'
 
 interface Props {
@@ -6,27 +6,42 @@ interface Props {
 }
 
 export default function LineIndicator(props: Props) {
-    const data = props.data.dados
+    const data = props.data.dados;
+
     const config = {
         data,
         xField: 'Mês',
-        yField: 'Plan',
-        point: {
-            shapeField: 'square',
-            sizeField: 4,
-        },
-        interaction: {
-            tooltip: {
-                marker: false,
+        legend: true,
+        children: [
+            {
+                type: 'interval',
+                yField: 'Realizado',
+                style: { maxWidth: 80, fill:'#1447b5' },
+                label: { position: 'inside', fill:'white' },
+                interaction: {
+                    elementHighlight: true,
+                    elementHighlightByColor: { background: true },
+                },
             },
-        },
-        style: {
-            lineWidth: 2,
-        },
-    };
+            {
+                type: 'line',
+                yField: 'Planejado',
+                shapeField: 'smooth',
+                style: { lineWidth: 5 },
+                axis: { y: false },
+                interaction: {
+                    tooltip: {
+                        crosshairs: false,
+                        marker: false,
+                    },
+                },
+            },
+        ],
+    }
+
     return (
         <>
-            <Line className={styles.graficos} {...config} />
+            <DualAxes className={styles.graficos} {...config} />
         </>
     );
 };
