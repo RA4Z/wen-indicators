@@ -2,6 +2,7 @@ import Mapa from 'assets/mapa-mundi.svg'
 import Brasil from 'assets/brasil.png'
 import India from 'assets/india.png'
 import USA from 'assets/estados-unidos.png'
+import Africa from 'assets/africa-do-sul.png'
 import styles from './MapaMundi.module.scss'
 
 export default function MapaMundi() {
@@ -12,6 +13,7 @@ export default function MapaMundi() {
                 <img src={Brasil} className={styles.countries__brazil} alt='Ícone do Brasil' />
                 <img src={India} className={styles.countries__india} alt='Ícone da Índia' />
                 <img src={USA} className={styles.countries__usa} alt='Ícone dos Estados Unidos' />
+                <img src={Africa} className={styles.countries__africa} alt='Ícone da África do Sul' />
             </div>
         </header>
     )
