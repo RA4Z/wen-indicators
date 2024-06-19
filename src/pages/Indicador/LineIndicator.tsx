@@ -6,7 +6,7 @@ interface Props {
 }
 
 export default function LineIndicator(props: Props) {
-    const data = props.data.dados;
+    const data = props.data.dados.slice(-12);
 
     const config = {
         data,
@@ -16,8 +16,9 @@ export default function LineIndicator(props: Props) {
             {
                 type: 'interval',
                 yField: 'Realizado',
-                style: { maxWidth: 80, fill:'#1447b5' },
-                label: { position: 'inside', fill:'white' },
+                style: { maxWidth: 80, fill: '#1447b5' },
+                label: { position: 'inside', fill: 'white' },
+                scale: { series: { domainMin: 0, independent: true } },
                 interaction: {
                     elementHighlight: true,
                     elementHighlightByColor: { background: true },
@@ -27,8 +28,9 @@ export default function LineIndicator(props: Props) {
                 type: 'line',
                 yField: 'Planejado',
                 shapeField: 'smooth',
-                style: { lineWidth: 5 },
-                axis: { y: false },
+                style: { maxWidth: 80, lineWidth: 5 },
+                label: { position: 'inside', fill: 'black' },
+                scale: { y: { domainMin: 0, independent: true } },
                 interaction: {
                     tooltip: {
                         crosshairs: false,
