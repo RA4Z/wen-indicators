@@ -14,8 +14,10 @@
   height: 54px;
   position: absolute;
   left: 34%;
-  top: 72%;
+  top: 70%;
   cursor: pointer;
+  transition: .2s;
+  /* Animation */
 }
 
 .usa {
@@ -24,6 +26,8 @@
   left: 20%;
   top: 40%;
   cursor: pointer;
+  transition: .2s;
+  /* Animation */
 }
 
 .india {
@@ -32,4 +36,10 @@
   right: 28.5%;
   bottom: 43%;
   cursor: pointer;
+  transition: .2s;
+  /* Animation */
+}
+
+.brazil:hover, .india:hover, .usa:hover {
+  transform: scale(5);
 }
