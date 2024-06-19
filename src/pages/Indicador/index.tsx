@@ -1,6 +1,6 @@
 import { Modal } from "antd"
 import valores from 'data/valores.json'
-import LineIndicator from "./LineIndicator";
+import PlanvsReal from "./Charts/PlanvsReal";
 import { useEffect, useState } from "react";
 
 interface Props {
@@ -29,7 +29,7 @@ export default function Indicador(props: Props) {
                 width={'90vw'}
                 open={props.isIndicadorOpen} onOk={handleOk} onCancel={handleCancel}
                 footer={[]}>
-                <LineIndicator data={data} />
+                {props.nome === 'Planejado vs Realizado JGS' && <PlanvsReal data={data} />}
             </Modal>}
         </>
     )

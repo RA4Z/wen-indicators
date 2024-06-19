@@ -5,7 +5,7 @@ interface Props {
     data: any
 }
 
-export default function LineIndicator(props: Props) {
+export default function PlanvsReal(props: Props) {
     const data = props.data.dados.slice(-12);
 
     const config = {
@@ -30,6 +30,7 @@ export default function LineIndicator(props: Props) {
                 shapeField: 'smooth',
                 style: { maxWidth: 80, lineWidth: 5 },
                 label: { position: 'inside', fill: 'black' },
+                axis: { y: false },
                 scale: { y: { domainMin: 0, independent: true } },
                 interaction: {
                     tooltip: {
