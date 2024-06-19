@@ -6,10 +6,13 @@ import Africa from 'assets/africa-do-sul.png'
 import styles from './MapaMundi.module.scss'
 import Indicadores from 'pages/Indicadores'
 import { useState } from 'react'
+import Indicador from 'pages/Indicador'
 
 export default function MapaMundi() {
     const [country, setCountry] = useState('')
+    const [indicador, setIndicador] = useState('')
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isIndicadorOpen, setIsIndicadorOpen] = useState(false)
 
     function selectCountry(country: string) {
         setCountry(country)
@@ -17,7 +20,9 @@ export default function MapaMundi() {
     }
     return (
         <header className={styles.app}>
-            <Indicadores country={country} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+            <Indicadores country={country} isModalOpen={isModalOpen}
+                setIsModalOpen={setIsModalOpen} setIsIndicadorOpen={setIsIndicadorOpen} setIndicador={setIndicador} />
+            <Indicador nome={indicador} isIndicadorOpen={isIndicadorOpen} setIsIndicadorOpen={setIsIndicadorOpen} />
             <img src={Mapa} alt="Mapa Mundial" />
             <div className={styles.countries}>
                 <img src={Brasil} onClick={() => selectCountry('brasil')} className={styles.countries__brazil} alt='Ícone do Brasil' />

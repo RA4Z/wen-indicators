@@ -7,6 +7,8 @@ interface Props {
     country: string
     isModalOpen: boolean,
     setIsModalOpen: any
+    setIndicador: any,
+    setIsIndicadorOpen: any
 }
 
 export default function Indicadores(props: Props) {
@@ -24,15 +26,20 @@ export default function Indicadores(props: Props) {
         setData(value[0])
     }, [props.country])
 
+    function selecionarIndicador(nome: string) {
+        props.setIsModalOpen(false);
+        props.setIndicador(nome)
+        props.setIsIndicadorOpen(true)
+    }
+
     return (
         <>
             {data && <Modal title={`Indicadores ${data.country}`}
                 className={styles.modal}
                 open={props.isModalOpen} onOk={handleOk} onCancel={handleCancel}
-                footer={[]}
-            >
+                footer={[]}>
                 {data.indicadores.map((indicador, id) => (
-                    <p key={id}>{indicador}</p>
+                    <p key={id} onClick={() => selecionarIndicador(indicador)}>{indicador}</p>
                 ))}
             </Modal>}
         </>
