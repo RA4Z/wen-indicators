@@ -1,6 +1,6 @@
 [
     {
-        "id": "brasil",
+        "id": "Brazil",
         "country": "Brasil",
         "indicadores": [
             "Prazos para Controle JGS",
@@ -10,14 +10,14 @@
         ]
     },
     {
-        "id": "usa",
+        "id": "United States",
         "country": "Estados Unidos",
         "indicadores": [
             "Faturamento WEM"
         ]
     },
     {
-        "id": "india",
+        "id": "India",
         "country": "Índia",
         "indicadores": [
             "Motores Eólicos",
@@ -25,7 +25,7 @@
         ]
     },
     {
-        "id": "africa",
+        "id": "South Africa",
         "country": "África do Sul",
         "indicadores": []
     }
