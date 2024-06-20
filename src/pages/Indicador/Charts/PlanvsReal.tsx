@@ -6,7 +6,6 @@ interface Props {
 }
 
 export default function PlanvsReal(props: Props) {
-    console.log(props.data)
     const data = props.data.dados;
 
     const config = {
