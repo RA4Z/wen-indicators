@@ -40,7 +40,7 @@ export default function Automatic(props: Props) {
                     <img width={50} src={countryImage} alt={`Flag`} />
                     <span style={{ marginLeft: 10 }}>{`Exibição Automática de Indicadores WEN`}</span>
                 </div>}
-                width={'90vw'} open={props.automatic} footer={[]}>
+                width={'90vw'} open={props.automatic} footer={[]} closable={false}>
                 {data &&
                     <Carousel autoplay infinite>
                         {data.indicadores.map((item, index) => (
