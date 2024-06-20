@@ -47,12 +47,11 @@ export default function Indicador(props: Props) {
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                         <img width={50} src={countryImage} alt={`${props.country} Flag`} />
                         <span style={{ marginLeft: 10 }}>{`Indicador ${props.nome}`}</span>
-                    </div>
-                }
+                    </div>}
                     width={'90vw'}
                     open={props.isIndicadorOpen} onOk={handleOk} onCancel={handleCancel}
                     footer={[]}>
-                    {props.nome === 'Planejado vs Realizado JGS' && <PlanvsReal data={data} />}
+                    {props.nome.includes('Planejado vs Realizado') && <PlanvsReal data={data} />}
                 </Modal>}
         </>
     )

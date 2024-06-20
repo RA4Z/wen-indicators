@@ -3,25 +3,24 @@
         "id": "Brazil",
         "country": "Brasil",
         "indicadores": [
-            "Prazos para Controle JGS",
-            "Kanban Eletrônico JGS",
-            "Kanban Eletrônico SBC",
-            "Planejado vs Realizado JGS"
+            "Planejado vs Realizado JGS",
+            "Planejado vs Realizado WSB",
+            "Planejado vs Realizado EOL Gerador",
+            "Planejado vs Realizado ALT"
         ]
     },
     {
         "id": "United States",
         "country": "Estados Unidos",
         "indicadores": [
-            "Faturamento WEM"
+            "Planejado vs Realizado WEM"
         ]
     },
     {
         "id": "India",
         "country": "Índia",
         "indicadores": [
-            "Motores Eólicos",
-            "Lorem ipsum"
+            "Planejado vs Realizado WII"
         ]
     },
     {
