@@ -3,20 +3,29 @@ import indicadores from 'data/indicadores.json'
 import valores from 'data/valores.json'
 import { useEffect, useState } from "react";
 
-// import Africa from 'images/bandeira africa.png'
+import Africa from 'images/bandeira africa.png'
 import Brasil from 'images/bandeira brasil.png'
 import PlanvsReal from "pages/Indicador/Charts/PlanvsReal";
-// import China from 'images/bandeira china.png'
-// import India from 'images/bandeira india.png'
-// import Portugal from 'images/bandeira portugal.png'
-// import USA from 'images/bandeira usa.png'
+import China from 'images/bandeira china.png'
+import India from 'images/bandeira india.png'
+import Portugal from 'images/bandeira portugal.png'
+import USA from 'images/bandeira usa.png'
 
 interface Props {
     automatic: boolean
 }
 
+interface DataItem {
+    country: string;
+    indicador: string;
+}
+
 const contentStyle: React.CSSProperties = {
+    display: 'flex',
+    alignItems: 'center',
     height: '50px',
+    paddingLeft: 10,
+    marginBottom: 10,
     color: '#fff',
     lineHeight: '50px',
     textAlign: 'center',
@@ -24,31 +33,39 @@ const contentStyle: React.CSSProperties = {
 };
 
 export default function Automatic(props: Props) {
-    const [country, setCountry] = useState('Brazil')
-    const [data, setData] = useState<typeof indicadores[0]>()
-    const [countryImage, setCountryImage] = useState(Brasil)
+    const [data, setData] = useState<DataItem[]>()
+    const countryImage = [
+        { country: 'Brazil', image: Brasil },
+        { country: 'United States', image: USA },
+        { country: 'South Africa', image: Africa },
+        { country: 'China', image: China },
+        { country: 'India', image: India },
+        { country: 'Portugal', image: Portugal }]
 
     useEffect(() => {
-        const value = indicadores.filter(indicador => indicador.id === country)
-        setData(value[0])
-    }, [country])
+        const countries = ['Brazil', 'United States', 'India', 'South Africa', 'China', 'Portugal']
+        let ind: DataItem[] = []
+        countries.forEach((country) => {
+            const filteredIndicators = indicadores.filter(indicador => indicador.id === country);
+            filteredIndicators[0].indicadores.forEach((indicador) => ind.push({ country: country, indicador: indicador }))
+        });
+        setData(ind)
+    }, [])
 
     return (
         <>
-            <Modal title={
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <img width={50} src={countryImage} alt={`Flag`} />
-                    <span style={{ marginLeft: 10 }}>{`Exibição Automática de Indicadores WEN`}</span>
-                </div>}
-                width={'90vw'} open={props.automatic} footer={[]} closable={false}>
+            <Modal width={'90vw'} open={props.automatic} footer={[]} closable={false}>
                 {data &&
                     <Carousel autoplay infinite>
-                        {data.indicadores.map((item, index) => (
+                        {data.map((item, index) => (
                             <div key={index}>
-                                <h3 style={contentStyle}>{item}</h3>
-                                {item.includes('Planejado vs Realizado') &&
+                                <div style={contentStyle}>
+                                    <img width={50} src={countryImage.filter(country => country.country === item.country)[0].image} alt={`${item.country} Flag`} />
+                                    <h3 style={{ marginLeft: 10 }}>{item.indicador}</h3>
+                                </div>
+                                {item.indicador.includes('Planejado vs Realizado') &&
                                     <PlanvsReal data={
-                                        valores.filter(ind => ind.indicador === item)[0]} />}
+                                        valores.filter(ind => ind.indicador === item.indicador)[0]} />}
                             </div>
                         ))}
                     </Carousel>}
