@@ -1,0 +1,24 @@
+.container {
+    position: absolute;
+    width: 100%;
+    padding: 5px 0 5px 0;
+    background-color: #f0f0f0;
+    overflow: hidden;
+}
+
+.text {
+    display: inline-block;
+    white-space: nowrap;
+    font-weight: bold;
+    animation: scroll 20s linear infinite;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(350%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
