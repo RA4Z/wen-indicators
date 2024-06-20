@@ -28,5 +28,10 @@
         "id": "South Africa",
         "country": "África do Sul",
         "indicadores": []
+    },
+    {
+        "id": "Portugal",
+        "country": "Portugal",
+        "indicadores": []
     }
 ]

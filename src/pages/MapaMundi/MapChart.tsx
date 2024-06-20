@@ -18,6 +18,7 @@ export default function MapChart(props: Props) {
                             <Geography
                                 key={geo.rsmKey}
                                 geography={geo}
+                                onClick={() => console.log(geo.properties.name)}
                                 style={{
                                     default: {
                                         outline: 'none',
