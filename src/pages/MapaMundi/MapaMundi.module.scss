@@ -31,3 +31,10 @@
     transform: translate(-5vw, 5vh);
     fill: #3953A4;
 }
+
+.automatic {
+    position: absolute;
+    z-index: 1001;
+    bottom: 2%;
+    right: 5vw;
+}
