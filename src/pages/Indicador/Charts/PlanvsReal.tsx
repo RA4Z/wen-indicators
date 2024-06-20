@@ -1,4 +1,5 @@
 import { DualAxes } from '@ant-design/plots';
+import styles from './Charts.module.scss'
 
 interface Props {
     data: any
@@ -43,7 +44,7 @@ export default function PlanvsReal(props: Props) {
 
     return (
         <>
-            <DualAxes {...config} />
+            <DualAxes className={styles.chart} {...config} />
         </>
     );
 };
