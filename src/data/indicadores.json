@@ -33,5 +33,10 @@
         "id": "Portugal",
         "country": "Portugal",
         "indicadores": []
+    },
+    {
+        "id": "China",
+        "country": "China",
+        "indicadores": []
     }
 ]

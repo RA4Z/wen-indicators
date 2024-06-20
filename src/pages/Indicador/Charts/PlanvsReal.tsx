@@ -1,5 +1,4 @@
 import { DualAxes } from '@ant-design/plots';
-import styles from './Indicador.module.scss'
 
 interface Props {
     data: any
@@ -44,7 +43,7 @@ export default function PlanvsReal(props: Props) {
 
     return (
         <>
-            <DualAxes className={styles.graficos} {...config} />
+            <DualAxes {...config} />
         </>
     );
 };
