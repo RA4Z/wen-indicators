@@ -6,6 +6,7 @@ import Logo from 'assets/logo.png'
 import MapChart from './MapChart'
 import { CaretRightOutlined, PauseOutlined } from '@ant-design/icons';
 import { Button, Tooltip, message } from 'antd';
+import Automatic from 'pages/Automatic'
 
 export default function MapaMundi() {
     const [automatic, setAutomatic] = useState(false)
@@ -22,9 +23,13 @@ export default function MapaMundi() {
 
     return (
         <header className={styles.app}>
+            <Automatic automatic={automatic} />
+
             <Indicadores country={country} isModalOpen={isModalOpen}
                 setIsModalOpen={setIsModalOpen} setIsIndicadorOpen={setIsIndicadorOpen} setIndicador={setIndicador} />
+
             <Indicador country={country} nome={indicador} isIndicadorOpen={isIndicadorOpen} setIsIndicadorOpen={setIsIndicadorOpen} />
+
             <MapChart selectCountry={selectCountry} />
             <img title='Projeto Desenvolvido e Prototipado por Robert Aron Zimmermann' src={Logo} className={styles.logo} alt='Ícone da África do Sul' />
 

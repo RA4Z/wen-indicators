@@ -6,7 +6,8 @@ interface Props {
 }
 
 export default function PlanvsReal(props: Props) {
-    const data = props.data.dados.slice(-12);
+    console.log(props.data)
+    const data = props.data.dados;
 
     const config = {
         data,
