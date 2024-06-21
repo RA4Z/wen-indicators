@@ -54,11 +54,11 @@ export default function Automatic(props: Props) {
 
     return (
         <>
-            <Modal width={'90vw'} open={props.automatic} footer={[]} closable={false}>
+            <Modal width={'95vw'} open={props.automatic} footer={[]} closable={false}>
                 {data &&
                     <Carousel autoplay infinite>
                         {data.map((item, index) => (
-                            <div key={index}>
+                            <div key={index} >
                                 <div style={contentStyle}>
                                     <img width={50} src={countryImage.filter(country => country.country === item.country)[0].image} alt={`${item.country} Flag`} />
                                     <h3 style={{ marginLeft: 10 }}>{item.indicador}</h3>
