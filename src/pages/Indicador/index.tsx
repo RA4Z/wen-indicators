@@ -23,7 +23,6 @@ interface Props {
 
 export default function Indicador(props: Props) {
     const [data, setData] = useState<any>()
-    const [background, setBackground] = useState<any>()
     const [countryImage, setCountryImage] = useState(Brasil)
 
     const handleOk = () => {
@@ -36,14 +35,7 @@ export default function Indicador(props: Props) {
 
     useEffect(() => {
         let valor: any = valores.filter(value => value.indicador === props.nome)[0]
-        if (valor === undefined) {
-            valor = stocks.filter(value => value.Concatenar === props.nome)[0]
-            if(valor !== undefined) {
-                let last = stocks.filter(value => value.Concatenar.includes(props.nome) && value.Year === 2023)[0]
-                setBackground(last)
-            }
-        }
-        console.log(valor)
+        if (valor === undefined) valor = stocks.filter(value => value.Concatenar === props.nome)[0]
         setData(valor)
         if (props.country === 'South Africa') setCountryImage(Africa)
         if (props.country === 'Brazil') setCountryImage(Brasil)
@@ -65,7 +57,7 @@ export default function Indicador(props: Props) {
                     open={props.isIndicadorOpen} onOk={handleOk} onCancel={handleCancel}
                     footer={[]}>
                     {props.nome.includes('Planejado vs Realizado') && <PlanvsReal data={data} />}
-                    {props.nome.includes('Stocks') && <Estoques data={data} last={background} />}
+                    {props.nome.includes('Stocks') && <Estoques data={data} />}
                 </Modal>}
         </>
     )

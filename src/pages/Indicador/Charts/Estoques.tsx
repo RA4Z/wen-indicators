@@ -4,27 +4,45 @@ import { formatoMoneyBR } from 'utils';
 
 interface Props {
     data: any
-    last: any
 }
 
 export default function Estoques(props: Props) {
     const chartRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
+        const fields = ['Average 2022', 'Average 2023', 'Average 2024', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
         const data = [...props.data.averages, ...props.data.data];
-        let last = [null, null, null, ...props.last.data];
+        let last = [null, null, null, ...props.data.last];
+        let target = [null, null, ...props.data.target];
+
+        // const data = [...props.data.averages, ...props.data.data]
+        //     .map((valor: any, indice: any) => ({
+        //         x: fields[indice],
+        //         y: valor !== null ? valor : 1,
+        //         fillColor: indice === 0 ? '#548235' : '#000'
+        //     }));
+
+        // 1º e 2º = #548235
+        // 3º = #2e75b6
 
         var config = {
             series: [
                 {
                     name: 'Ano Atual',
                     type: 'column',
-                    data: data,
+                    data: data
                 },
                 {
                     name: 'Ano Anterior',
                     type: 'area',
                     data: last,
+                    color: '#807f7f'
+                },
+                {
+                    name: 'Meta',
+                    type: 'line',
+                    data: target,
+                    color: '#FF0000'
                 },
             ],
             chart: {
@@ -52,7 +70,7 @@ export default function Estoques(props: Props) {
                     stops: [0, 100, 100, 100]
                 }
             },
-            labels: ['Average 2022', 'Average 2023', 'Average 2024', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            labels: fields,
             markers: {
                 size: 0
             },
@@ -60,7 +78,7 @@ export default function Estoques(props: Props) {
                 enabled: true,
                 enabledOnSeries: [0],
                 formatter: function (val: any) { // <<< Adicione o formatter aqui
-                    if(val > 0) return formatoMoneyBR.format(val);
+                    if (val > 0) return formatoMoneyBR.format(val);
                 }
             },
             yaxis: {
@@ -95,7 +113,7 @@ export default function Estoques(props: Props) {
         return () => {
             chart.destroy(); // Limpa o gráfico quando o componente for desmontado
         };
-    }, [props.data, props.last]); // Renderiza novamente se os dados mudarem
+    }, [props.data]); // Renderiza novamente se os dados mudarem
 
     return (
         <>

@@ -71,9 +71,7 @@ export default function Automatic(props: Props) {
                                     <PlanvsReal data={valores.filter(ind => ind.indicador === item.indicador)[0]} />}
 
                                 {item.indicador.includes('Stocks') &&
-                                    <Estoques data={stocks.filter(ind => ind.Concatenar === item.indicador)[0]}
-                                        last={stocks.filter(ind => ind.Concatenar.includes(item.indicador)  && ind.Year === 2023)[0]}
-                                    />}
+                                    <Estoques data={stocks.filter(ind => ind.Concatenar === item.indicador)[0]}/>}
                             </div>
                         ))}
                     </Carousel>}
