@@ -52,9 +52,16 @@ export default function Estoques(props: Props) {
                     stops: [0, 100, 100, 100]
                 }
             },
-            labels: ['Average 2022', 'Average 2023', 'Average 2024', 'Jan', 'Feb', 'Mar', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            labels: ['Average 2022', 'Average 2023', 'Average 2024', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
             markers: {
                 size: 0
+            },
+            dataLabels: {
+                enabled: true,
+                enabledOnSeries: [0],
+                formatter: function (val: any) { // <<< Adicione o formatter aqui
+                    if(val > 0) return formatoMoneyBR.format(val);
+                }
             },
             yaxis: {
                 title: {
