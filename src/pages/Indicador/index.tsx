@@ -1,5 +1,8 @@
 import { Modal } from "antd"
+
 import valores from 'data/valores.json'
+import stocks from 'data/dados estoques.json'
+
 import PlanvsReal from "./Charts/PlanvsReal";
 import { useEffect, useState } from "react";
 
@@ -9,6 +12,7 @@ import China from 'images/bandeira china.png'
 import India from 'images/bandeira india.png'
 import Portugal from 'images/bandeira portugal.png'
 import USA from 'images/bandeira usa.png'
+import Estoques from "./Charts/Estoques";
 
 interface Props {
     country: string
@@ -18,7 +22,8 @@ interface Props {
 }
 
 export default function Indicador(props: Props) {
-    const [data, setData] = useState<typeof valores[0]>()
+    const [data, setData] = useState<any>()
+    const [background, setBackground] = useState<any>()
     const [countryImage, setCountryImage] = useState(Brasil)
 
     const handleOk = () => {
@@ -30,7 +35,15 @@ export default function Indicador(props: Props) {
     };
 
     useEffect(() => {
-        const valor = valores.filter(value => value.indicador === props.nome)[0]
+        let valor: any = valores.filter(value => value.indicador === props.nome)[0]
+        if (valor === undefined) {
+            valor = stocks.filter(value => value.Concatenar === props.nome)[0]
+            if(valor !== undefined) {
+                let last = stocks.filter(value => value.Concatenar.includes(props.nome) && value.Year === 2023)[0]
+                setBackground(last)
+            }
+        }
+        console.log(valor)
         setData(valor)
         if (props.country === 'South Africa') setCountryImage(Africa)
         if (props.country === 'Brazil') setCountryImage(Brasil)
@@ -52,6 +65,7 @@ export default function Indicador(props: Props) {
                     open={props.isIndicadorOpen} onOk={handleOk} onCancel={handleCancel}
                     footer={[]}>
                     {props.nome.includes('Planejado vs Realizado') && <PlanvsReal data={data} />}
+                    {props.nome.includes('Stocks') && <Estoques data={data} last={background} />}
                 </Modal>}
         </>
     )

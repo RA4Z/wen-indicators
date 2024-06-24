@@ -1,6 +1,9 @@
 import { Modal, Carousel } from "antd"
+
 import indicadores from 'data/indicadores.json'
 import valores from 'data/valores.json'
+import stocks from 'data/dados estoques.json'
+
 import { useEffect, useState } from "react";
 
 import Africa from 'images/bandeira africa.png'
@@ -10,6 +13,7 @@ import China from 'images/bandeira china.png'
 import India from 'images/bandeira india.png'
 import Portugal from 'images/bandeira portugal.png'
 import USA from 'images/bandeira usa.png'
+import Estoques from "pages/Indicador/Charts/Estoques";
 
 interface Props {
     automatic: boolean
@@ -64,8 +68,12 @@ export default function Automatic(props: Props) {
                                     <h3 style={{ marginLeft: 10 }}>{item.indicador}</h3>
                                 </div>
                                 {item.indicador.includes('Planejado vs Realizado') &&
-                                    <PlanvsReal data={
-                                        valores.filter(ind => ind.indicador === item.indicador)[0]} />}
+                                    <PlanvsReal data={valores.filter(ind => ind.indicador === item.indicador)[0]} />}
+
+                                {item.indicador.includes('Stocks') &&
+                                    <Estoques data={stocks.filter(ind => ind.Concatenar === item.indicador)[0]}
+                                        last={stocks.filter(ind => ind.Concatenar.includes(item.indicador)  && ind.Year === 2023)[0]}
+                                    />}
                             </div>
                         ))}
                     </Carousel>}
