@@ -27,6 +27,24 @@ export default function MapaMundi() {
             selecionado: true
         }
     ])
+    const [filiais, setFiliais] = useState([
+        {
+            nome: 'JGS',
+            selecionado: true
+        },
+        {
+            nome: 'WSB',
+            selecionado: true
+        },
+        {
+            nome: 'HISA',
+            selecionado: true
+        },
+        {
+            nome: 'TGM',
+            selecionado: true
+        }
+    ])
 
     useEffect(() => {
         async function getData() {
@@ -54,7 +72,7 @@ export default function MapaMundi() {
                 nome={indicador} isIndicadorOpen={isIndicadorOpen} setIsIndicadorOpen={setIsIndicadorOpen} />
 
             <MapChart selectCountry={selectCountry} />
-            <Filter filtros={filtros} setFiltros={setFiltros} />
+            <Filter filtros={filtros} setFiltros={setFiltros} filiais={filiais} setFiliais={setFiliais} />
 
             <Tooltip title={automatic ? 'Pausar Exibição' : 'Iniciar Exibição'} color='geekblue'>
                 <Button icon={automatic ? <PauseOutlined /> : <CaretRightOutlined />}
