@@ -7,21 +7,26 @@
             "Planejado vs Realizado WSB",
             "Planejado vs Realizado EOL - Gerador",
             "Planejado vs Realizado ALT",
-            "Stocks JGS Total Inventory"
+            "Stocks JGS Total Inventory",
+            "Stocks WSB Total Inventory",
+            "Stocks HISA Total Inventory",
+            "Stocks EOL Total Inventory"
         ]
     },
     {
         "id": "United States",
         "country": "Estados Unidos",
         "indicadores": [
-            "Planejado vs Realizado WEM"
+            "Planejado vs Realizado WEM",
+            "Stocks WEM Total Inventory"
         ]
     },
     {
         "id": "India",
         "country": "Índia",
         "indicadores": [
-            "Planejado vs Realizado WII"
+            "Planejado vs Realizado WII",
+            "Stocks WII Total Inventory"
         ]
     },
     {
@@ -32,11 +37,15 @@
     {
         "id": "Portugal",
         "country": "Portugal",
-        "indicadores": []
+        "indicadores": [
+            "Stocks WPT Total Inventory"
+        ]
     },
     {
         "id": "China",
         "country": "China",
-        "indicadores": []
+        "indicadores": [
+            "Stocks WNT Total Inventory"
+        ]
     }
 ]
