@@ -2,11 +2,11 @@ import styles from './MapaMundi.module.scss'
 import Indicadores from 'pages/Indicadores'
 import { useState } from 'react'
 import Indicador from 'pages/Indicador'
-import Logo from 'assets/logo.png'
 import MapChart from './MapChart'
 import { CaretRightOutlined, PauseOutlined } from '@ant-design/icons';
 import { Button, Tooltip, message } from 'antd';
 import Automatic from 'pages/Automatic'
+import Filter from 'components/Filter'
 
 export default function MapaMundi() {
     const [automatic, setAutomatic] = useState(false)
@@ -31,7 +31,7 @@ export default function MapaMundi() {
             <Indicador country={country} nome={indicador} isIndicadorOpen={isIndicadorOpen} setIsIndicadorOpen={setIsIndicadorOpen} />
 
             <MapChart selectCountry={selectCountry} />
-            <img title='Projeto Desenvolvido e Prototipado por Robert Aron Zimmermann' src={Logo} className={styles.logo} alt='Ícone da África do Sul' />
+            <Filter />
 
             <Tooltip title={automatic ? 'Pausar Exibição' : 'Iniciar Exibição'} color='geekblue'>
                 <Button icon={automatic ? <PauseOutlined /> : <CaretRightOutlined />}
