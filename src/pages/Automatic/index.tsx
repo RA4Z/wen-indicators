@@ -38,6 +38,8 @@ const contentStyle: React.CSSProperties = {
 
 export default function Automatic(props: Props) {
     const [data, setData] = useState<DataItem[]>()
+    const filtros = JSON.parse(localStorage.getItem('filtros_ativos')!);
+
     const countryImage = [
         { country: 'Brazil', image: Brasil },
         { country: 'United States', image: USA },
@@ -46,15 +48,32 @@ export default function Automatic(props: Props) {
         { country: 'India', image: India },
         { country: 'Portugal', image: Portugal }]
 
-    useEffect(() => {
-        const countries = ['Brazil', 'United States', 'India', 'South Africa', 'China', 'Portugal']
-        let ind: DataItem[] = []
-        countries.forEach((country) => {
-            const filteredIndicators = indicadores.filter(indicador => indicador.id === country);
-            filteredIndicators[0].indicadores.forEach((indicador) => ind.push({ country: country, indicador: indicador }))
-        });
-        setData(ind)
-    }, [])
+        useEffect(() => {
+            const countries = ['Brazil', 'United States', 'India', 'South Africa', 'China', 'Portugal'];
+            let ind: DataItem[] = [];
+          
+            countries.forEach((country) => {
+              const filteredIndicators = indicadores.filter(indicador => indicador.id === country);
+          
+              if (filteredIndicators.length > 0) { 
+                // Verifica se encontrou indicadores para o país
+                const filtrados = filtros.filter((filtro: any) => filtro.selecionado === true);
+                const filter: string[] = filtrados.map((filtro: any) => filtro.nome);
+          
+                // Aplica o filtro aos indicadores do país
+                const indicadoresFiltrados = filteredIndicators[0].indicadores.filter(indicador => {
+                  return filter.some(nomeFiltro => indicador.includes(nomeFiltro));
+                });
+          
+                // Adiciona os indicadores filtrados ao array 'ind'
+                indicadoresFiltrados.forEach((indicador) => {
+                  ind.push({ country: country, indicador: indicador });
+                });
+              }
+            });
+          
+            setData(ind);
+          }, [filtros]);
 
     return (
         <>

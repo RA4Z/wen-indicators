@@ -13,6 +13,8 @@ interface Props {
 
 export default function Indicadores(props: Props) {
     const [data, setData] = useState<typeof Indicators[0]>()
+    const filtros = JSON.parse(localStorage.getItem('filtros_ativos')!);
+
     const handleOk = () => {
         props.setIsModalOpen(false);
     };
@@ -23,8 +25,21 @@ export default function Indicadores(props: Props) {
 
     useEffect(() => {
         const value = Indicators.filter(indicator => indicator.id === props.country)
-        setData(value[0])
-    }, [props.country])
+        if (value.length > 0) {
+            const filtrados = filtros.filter((filtro: any) => filtro.selecionado === true)
+            let filter: any[] = []
+            for (let i = 0; i < filtrados.length; i++) {
+                filter.push(filtrados[i].nome)
+            }
+            const nomes = value[0].indicadores.filter(indicador => {
+                return filter.some(nomeFiltro => indicador.includes(nomeFiltro));
+            });
+            const newValue = { ...value[0], indicadores: nomes };
+            setData(newValue)
+        } else {
+            setData(value[0])
+        }
+    }, [props.country, filtros])
 
     function selecionarIndicador(nome: string) {
         props.setIsModalOpen(false);
