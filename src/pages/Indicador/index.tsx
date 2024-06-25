@@ -1,8 +1,5 @@
 import { Modal } from "antd"
 
-import valores from 'data/valores.json'
-import stocks from 'data/dados estoques.json'
-
 import PlanvsReal from "./Charts/PlanvsReal";
 import { useEffect, useState } from "react";
 
@@ -15,6 +12,7 @@ import USA from 'images/bandeira usa.png'
 import Estoques from "./Charts/Estoques";
 
 interface Props {
+    database: any
     country: string
     nome: string
     isIndicadorOpen: boolean
@@ -34,8 +32,8 @@ export default function Indicador(props: Props) {
     };
 
     useEffect(() => {
-        let valor: any = valores.filter(value => value.indicador === props.nome)[0]
-        if (valor === undefined) valor = stocks.filter(value => value.Concatenar === props.nome)[0]
+        let valor: any = props.database.filter((value: any) => value.indicador === props.nome)[0]
+        if (valor === undefined) valor = props.database.filter((value: any) => value.Concatenar === props.nome)[0]
         setData(valor)
         if (props.country === 'South Africa') setCountryImage(Africa)
         if (props.country === 'Brazil') setCountryImage(Brasil)
@@ -43,7 +41,7 @@ export default function Indicador(props: Props) {
         if (props.country === 'India') setCountryImage(India)
         if (props.country === 'Portugal') setCountryImage(Portugal)
         if (props.country === 'United States') setCountryImage(USA)
-    }, [props.nome, props.country])
+    }, [props.nome, props.country, props.database])
 
     return (
         <>

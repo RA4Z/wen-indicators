@@ -1,9 +1,5 @@
 import { Modal, Carousel } from "antd"
 
-import indicadores from 'data/indicadores.json'
-import valores from 'data/valores.json'
-import stocks from 'data/dados estoques.json'
-
 import { useEffect, useState } from "react";
 
 import Africa from 'images/bandeira africa.png'
@@ -16,7 +12,10 @@ import USA from 'images/bandeira usa.png'
 import Estoques from "pages/Indicador/Charts/Estoques";
 
 interface Props {
+    database: any
+    indicadores: any
     automatic: boolean
+    filtros: any
 }
 
 interface DataItem {
@@ -38,7 +37,6 @@ const contentStyle: React.CSSProperties = {
 
 export default function Automatic(props: Props) {
     const [data, setData] = useState<DataItem[]>()
-    const filtros = JSON.parse(localStorage.getItem('filtros_ativos')!);
 
     const countryImage = [
         { country: 'Brazil', image: Brasil },
@@ -48,32 +46,31 @@ export default function Automatic(props: Props) {
         { country: 'India', image: India },
         { country: 'Portugal', image: Portugal }]
 
-        useEffect(() => {
-            const countries = ['Brazil', 'United States', 'India', 'South Africa', 'China', 'Portugal'];
-            let ind: DataItem[] = [];
-          
-            countries.forEach((country) => {
-              const filteredIndicators = indicadores.filter(indicador => indicador.id === country);
-          
-              if (filteredIndicators.length > 0) { 
+    useEffect(() => {
+        const countries = ['Brazil', 'United States', 'India', 'South Africa', 'China', 'Portugal'];
+        let ind: DataItem[] = [];
+
+        countries.forEach((country) => {
+            const filteredIndicators = props.indicadores.filter((indicador: any) => indicador.id === country);
+
+            if (filteredIndicators.length > 0) {
                 // Verifica se encontrou indicadores para o país
-                const filtrados = filtros.filter((filtro: any) => filtro.selecionado === true);
+                const filtrados = props.filtros.filter((filtro: any) => filtro.selecionado === true);
                 const filter: string[] = filtrados.map((filtro: any) => filtro.nome);
-          
+
                 // Aplica o filtro aos indicadores do país
-                const indicadoresFiltrados = filteredIndicators[0].indicadores.filter(indicador => {
-                  return filter.some(nomeFiltro => indicador.includes(nomeFiltro));
+                const indicadoresFiltrados = filteredIndicators[0].indicadores.filter((indicador: any) => {
+                    return filter.some(nomeFiltro => indicador.includes(nomeFiltro));
                 });
-          
+
                 // Adiciona os indicadores filtrados ao array 'ind'
-                indicadoresFiltrados.forEach((indicador) => {
-                  ind.push({ country: country, indicador: indicador });
+                indicadoresFiltrados.forEach((indicador: any) => {
+                    ind.push({ country: country, indicador: indicador });
                 });
-              }
-            });
-          
+            }
             setData(ind);
-          }, [filtros]);
+        });
+    }, [props.indicadores, props.filtros]);
 
     return (
         <>
@@ -87,10 +84,10 @@ export default function Automatic(props: Props) {
                                     <h3 style={{ marginLeft: 10 }}>{item.indicador}</h3>
                                 </div>
                                 {item.indicador.includes('Planejado vs Realizado') &&
-                                    <PlanvsReal data={valores.filter(ind => ind.indicador === item.indicador)[0]} />}
+                                    <PlanvsReal data={props.database.filter((ind: any) => ind.indicador === item.indicador)[0]} />}
 
                                 {item.indicador.includes('Stocks') &&
-                                    <Estoques data={stocks.filter(ind => ind.Concatenar === item.indicador)[0]}/>}
+                                    <Estoques data={props.database.filter((ind: any) => ind.Concatenar === item.indicador)[0]} />}
                             </div>
                         ))}
                     </Carousel>}

@@ -5,28 +5,23 @@ import { Checkbox } from 'antd';
 import { useEffect, useState } from 'react';
 import type { MenuProps } from 'antd';
 
-export default function Filter() {
+interface Props {
+    filtros: any
+    setFiltros: any
+}
+
+export default function Filter(props: Props) {
     const [open, setOpen] = useState(false)
     const [alterando, setAlterando] = useState(false)
-    const [filtros, setFiltros] = useState([
-        {
-            nome: 'Planejado vs Realizado',
-            selecionado: true
-        },
-        {
-            nome: 'Stocks',
-            selecionado: true
-        }
-    ])
 
     const onChange = (e: any, index: any) => {
-        const novosFiltros = [...filtros];
+        const novosFiltros = [...props.filtros];
         novosFiltros[index].selecionado = e.target.checked;
-        setFiltros(novosFiltros);
+        props.setFiltros(novosFiltros);
         setAlterando(true)
     };
 
-    const items: MenuProps['items'] = filtros.map((filtro, index) => ({
+    const items: MenuProps['items'] = props.filtros.map((filtro: any, index: any) => ({
         key: index.toString(), // Use o índice como chave
         label: (
             <Checkbox
@@ -41,17 +36,17 @@ export default function Filter() {
         const info = localStorage.getItem('filtros_ativos');
         if (info) {
             const parsedInfo = JSON.parse(info);
-            setFiltros(parsedInfo);
+            props.setFiltros(parsedInfo);
         }
     }, []);
 
     useEffect(() => {
         if (alterando) {
-            const itemsString = JSON.stringify(filtros);
+            const itemsString = JSON.stringify(props.filtros);
             localStorage.setItem('filtros_ativos', itemsString);
             setAlterando(false)
         }
-    }, [filtros, alterando])
+    }, [props.filtros, alterando])
 
     return (
         <>

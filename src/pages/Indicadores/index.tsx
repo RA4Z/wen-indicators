@@ -1,19 +1,19 @@
 import { Modal } from 'antd'
-import Indicators from 'data/indicadores.json'
 import styles from './Indicador.module.scss'
 import { useEffect, useState } from 'react'
 
 interface Props {
     country: string
     isModalOpen: boolean,
+    indicators: any
     setIsModalOpen: any
     setIndicador: any,
-    setIsIndicadorOpen: any
+    setIsIndicadorOpen: any,
+    filtros: any
 }
 
 export default function Indicadores(props: Props) {
-    const [data, setData] = useState<typeof Indicators[0]>()
-    const filtros = JSON.parse(localStorage.getItem('filtros_ativos')!);
+    const [data, setData] = useState<any>()
 
     const handleOk = () => {
         props.setIsModalOpen(false);
@@ -24,14 +24,14 @@ export default function Indicadores(props: Props) {
     };
 
     useEffect(() => {
-        const value = Indicators.filter(indicator => indicator.id === props.country)
+        const value = props.indicators.filter((indicator: any) => indicator.id === props.country)
         if (value.length > 0) {
-            const filtrados = filtros.filter((filtro: any) => filtro.selecionado === true)
+            const filtrados = props.filtros.filter((filtro: any) => filtro.selecionado === true)
             let filter: any[] = []
             for (let i = 0; i < filtrados.length; i++) {
                 filter.push(filtrados[i].nome)
             }
-            const nomes = value[0].indicadores.filter(indicador => {
+            const nomes = value[0].indicadores.filter((indicador: any) => {
                 return filter.some(nomeFiltro => indicador.includes(nomeFiltro));
             });
             const newValue = { ...value[0], indicadores: nomes };
@@ -39,7 +39,7 @@ export default function Indicadores(props: Props) {
         } else {
             setData(value[0])
         }
-    }, [props.country, filtros])
+    }, [props.filtros, props.country, props.indicators])
 
     function selecionarIndicador(nome: string) {
         props.setIsModalOpen(false);
@@ -53,7 +53,7 @@ export default function Indicadores(props: Props) {
                 className={styles.modal}
                 open={props.isModalOpen} onOk={handleOk} onCancel={handleCancel}
                 footer={[]}>
-                {data.indicadores.map((indicador, id) => (
+                {data.indicadores.map((indicador: any, id: any) => (
                     <p key={id} onClick={() => selecionarIndicador(indicador)}>{indicador}</p>
                 ))}
             </Modal>}

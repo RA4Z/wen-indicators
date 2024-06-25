@@ -1,12 +1,13 @@
 import styles from './MapaMundi.module.scss'
 import Indicadores from 'pages/Indicadores'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Indicador from 'pages/Indicador'
 import MapChart from './MapChart'
 import { CaretRightOutlined, PauseOutlined } from '@ant-design/icons';
 import { Button, Tooltip, message } from 'antd';
 import Automatic from 'pages/Automatic'
 import Filter from 'components/Filter'
+import { getDatabase, getIndicadores } from 'services/requisition'
 
 export default function MapaMundi() {
     const [automatic, setAutomatic] = useState(false)
@@ -14,6 +15,22 @@ export default function MapaMundi() {
     const [indicador, setIndicador] = useState('')
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isIndicadorOpen, setIsIndicadorOpen] = useState(false)
+    const [database, setDatabase] = useState([])
+    const [indicators, setIndicators] = useState([])
+    const [filtros, setFiltros] = useState([
+        {
+            nome: 'Stocks',
+            selecionado: true
+        }
+    ])
+
+    useEffect(() => {
+        async function getData() {
+            setIndicators(await getIndicadores())
+            setDatabase(await getDatabase())
+        }
+        getData()
+    }, [])
 
     function selectCountry(country: string) {
         setAutomatic(false)
@@ -23,15 +40,16 @@ export default function MapaMundi() {
 
     return (
         <header className={styles.app}>
-            <Automatic automatic={automatic} />
+            <Automatic indicadores={indicators} database={database} automatic={automatic} filtros={filtros} />
 
-            <Indicadores country={country} isModalOpen={isModalOpen}
+            <Indicadores indicators={indicators} country={country} isModalOpen={isModalOpen} filtros={filtros}
                 setIsModalOpen={setIsModalOpen} setIsIndicadorOpen={setIsIndicadorOpen} setIndicador={setIndicador} />
 
-            <Indicador country={country} nome={indicador} isIndicadorOpen={isIndicadorOpen} setIsIndicadorOpen={setIsIndicadorOpen} />
+            <Indicador database={database} country={country}
+                nome={indicador} isIndicadorOpen={isIndicadorOpen} setIsIndicadorOpen={setIsIndicadorOpen} />
 
             <MapChart selectCountry={selectCountry} />
-            <Filter />
+            <Filter filtros={filtros} setFiltros={setFiltros} />
 
             <Tooltip title={automatic ? 'Pausar Exibição' : 'Iniciar Exibição'} color='geekblue'>
                 <Button icon={automatic ? <PauseOutlined /> : <CaretRightOutlined />}
