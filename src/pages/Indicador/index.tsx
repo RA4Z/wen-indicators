@@ -55,7 +55,7 @@ export default function Indicador(props: Props) {
                     open={props.isIndicadorOpen} onOk={handleOk} onCancel={handleCancel}
                     footer={[]}>
                     {props.nome.includes('Planejado vs Realizado') && <PlanvsReal data={data} />}
-                    {props.nome.includes('Stocks') && <Estoques data={data} />}
+                    {props.nome.includes('Inventory') && <Estoques data={data} />}
                 </Modal>}
         </>
     )

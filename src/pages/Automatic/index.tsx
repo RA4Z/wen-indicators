@@ -86,7 +86,7 @@ export default function Automatic(props: Props) {
                                 {item.indicador.includes('Planejado vs Realizado') &&
                                     <PlanvsReal data={props.database.filter((ind: any) => ind.indicador === item.indicador)[0]} />}
 
-                                {item.indicador.includes('Stocks') &&
+                                {item.indicador.includes('Inventory') &&
                                     <Estoques data={props.database.filter((ind: any) => ind.Concatenar === item.indicador)[0]} />}
                             </div>
                         ))}

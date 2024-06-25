@@ -19,13 +19,18 @@ export default function MapaMundi() {
     const [indicators, setIndicators] = useState([])
     const [filtros, setFiltros] = useState([
         {
-            nome: 'Stocks',
+            nome: 'Inventory*',
+            selecionado: true
+        },
+        {
+            nome: 'Inventory Turns',
             selecionado: true
         }
     ])
 
     useEffect(() => {
         async function getData() {
+            console.log(await getIndicadores())
             setIndicators(await getIndicadores())
             setDatabase(await getDatabase())
         }
