@@ -11,7 +11,8 @@ export default function Estoques(props: Props) {
 
     useEffect(() => {
         const fields = ['Average 2022', 'Average 2023', 'Average 2024', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-        const data = [...props.data.averages, ...props.data.data];
+        const data = [null, null, null, ...props.data.data];
+        const averages = [...props.data.averages, null, null, null, null, null, null, null, null, null, null, null, null]
         let last = [null, null, null, ...props.data.last];
         let target = [null, null, ...props.data.target];
 
@@ -30,13 +31,19 @@ export default function Estoques(props: Props) {
                 {
                     name: 'Ano Atual',
                     type: 'column',
-                    data: data
+                    data: data,
                 },
                 {
                     name: 'Ano Anterior',
                     type: 'area',
                     data: last,
                     color: '#807f7f'
+                },
+                {
+                    name: 'Média',
+                    type: 'column',
+                    data: averages,
+                    color: '#548235',
                 },
                 {
                     name: 'Meta',
@@ -51,7 +58,7 @@ export default function Estoques(props: Props) {
                 stacked: false,
             },
             stroke: {
-                width: [0, 2, 5],
+                width: [0, 2, 2, 5],
                 curve: 'smooth'
             },
             plotOptions: {
@@ -60,7 +67,7 @@ export default function Estoques(props: Props) {
                 }
             },
             fill: {
-                opacity: [0.85, 0.25, 1],
+                opacity: [0.85, 0.25, 0.85, 1],
                 gradient: {
                     inverseColors: false,
                     shade: 'light',
@@ -76,7 +83,7 @@ export default function Estoques(props: Props) {
             },
             dataLabels: {
                 enabled: true,
-                enabledOnSeries: [0],
+                enabledOnSeries: [0, 2],
                 formatter: function (val: any) { // <<< Adicione o formatter aqui
                     if (val > 0) return formatoMoneyBR.format(val);
                 }
