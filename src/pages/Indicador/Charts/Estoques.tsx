@@ -142,7 +142,7 @@ export default function Estoques(props: Props) {
 
     return (
         <>
-            <div className={styles.meta}>Target: <div style={{color:'#FF0000'}}>{props.name.includes('Turns') ? props.data.target[12].toFixed(2) : formatoMoneyBR.format(props.data.target[12])}</div></div>
+            <div className={styles.meta}>Target: <div style={{color:'#FF0000'}}>{props.name.includes('Turns') ? props.data.target[12].toFixed(1) : formatoMoneyBR.format(props.data.target[12])}</div></div>
             <div id="chart" ref={chartRef} />
         </>
     )
