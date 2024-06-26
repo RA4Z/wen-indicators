@@ -8,8 +8,10 @@ import { Button, Tooltip, message } from 'antd';
 import Automatic from 'pages/Automatic'
 import Filter from 'components/Filter'
 import { getDatabase, getIndicadores } from 'services/requisition'
+import Disabled from 'components/Disabled'
 
 export default function MapaMundi() {
+    const [disabledError, setDisabledError] = useState(false)
     const [automatic, setAutomatic] = useState(false)
     const [country, setCountry] = useState('')
     const [indicador, setIndicador] = useState('')
@@ -72,7 +74,7 @@ export default function MapaMundi() {
 
     useEffect(() => {
         async function getData() {
-            setIndicators(await getIndicadores())
+            setIndicators(await getIndicadores(setDisabledError))
             setDatabase(await getDatabase())
         }
         getData()
@@ -86,6 +88,7 @@ export default function MapaMundi() {
 
     return (
         <header className={styles.app}>
+            <Disabled open={disabledError} />
             <Automatic filiais={filiais} indicadores={indicators} database={database} automatic={automatic} filtros={filtros} />
 
             <Indicadores filiais={filiais} indicators={indicators} country={country} isModalOpen={isModalOpen} filtros={filtros}
