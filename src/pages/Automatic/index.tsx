@@ -66,7 +66,7 @@ export default function Automatic(props: Props) {
                 const filter: string[] = filtrados.map((filtro: any) => filtro.nome);
                 const filial: string[] = filiais.map((filial: any) => filial.nome);
 
-                const selected_filial = filteredIndicators.filter((indicador:any) => filial.includes(indicador.empresa))
+                const selected_filial = filteredIndicators.filter((indicador: any) => filial.includes(indicador.empresa))
                 const nomes = selected_filial.reduce((acc: string[], item: any) => {
                     const indicadoresFiltrados = item.indicadores.filter((indicador: string) =>
                         filter.some(nomeFiltro => indicador.includes(nomeFiltro))
@@ -98,7 +98,7 @@ export default function Automatic(props: Props) {
                                     <PlanvsReal data={props.database.filter((ind: any) => ind.indicador === item.indicador)[0]} />}
 
                                 {item.indicador.includes('Inventory') &&
-                                    <Estoques data={props.database.filter((ind: any) => ind.Concatenar === item.indicador)[0]} />}
+                                    <Estoques name={item.indicador} data={props.database.filter((ind: any) => ind.Concatenar === item.indicador)[0]} />}
                             </div>
                         ))}
                     </Carousel>}

@@ -3,6 +3,7 @@ import ApexCharts from 'apexcharts'
 import { formatoMoneyBR } from 'utils';
 
 interface Props {
+    name: string
     data: any
 }
 
@@ -85,7 +86,13 @@ export default function Estoques(props: Props) {
                 enabled: true,
                 enabledOnSeries: [0, 2],
                 formatter: function (val: any) { // <<< Adicione o formatter aqui
-                    if (val > 0) return formatoMoneyBR.format(val);
+                    if (val > 0) {
+                        if (!props.name.includes('Turns')) {
+                            return formatoMoneyBR.format(val);
+                        } else {
+                            return val.toFixed(1)
+                        }
+                    }
                 }
             },
             yaxis: {
@@ -95,7 +102,13 @@ export default function Estoques(props: Props) {
                 min: 0,
                 labels: { // <<< Adicione esta seção para formatar os labels do eixo Y
                     formatter: function (val: any) {
-                        return formatoMoneyBR.format(val);
+                        if (val > 0) {
+                            if (!props.name.includes('Turns')) {
+                                return formatoMoneyBR.format(val);
+                            } else {
+                                return val.toFixed(1)
+                            }
+                        }
                     }
                 }
             },
@@ -120,7 +133,7 @@ export default function Estoques(props: Props) {
         return () => {
             chart.destroy(); // Limpa o gráfico quando o componente for desmontado
         };
-    }, [props.data]); // Renderiza novamente se os dados mudarem
+    }, [props.data, props.name]); // Renderiza novamente se os dados mudarem
 
     return (
         <>
