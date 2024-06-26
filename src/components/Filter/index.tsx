@@ -72,13 +72,14 @@ export default function Filter({ filtros, setFiltros, filiais, setFiliais }: Pro
                     {
                         key: 'todos-filtros',
                         label: (
-                            <Checkbox
-                                indeterminate={!allFiltrosSelected && filtros.some((filtro: any) => filtro.selecionado)}
-                                checked={allFiltrosSelected}
-                                onChange={onChangeAllFiltros}
-                                onClick={preventCloseDropdown}>
-                                Selecionar Todos
-                            </Checkbox>
+                            <div onClick={preventCloseDropdown}>
+                                <Checkbox
+                                    indeterminate={!allFiltrosSelected && filtros.some((filtro: any) => filtro.selecionado)}
+                                    checked={allFiltrosSelected}
+                                    onChange={onChangeAllFiltros}>
+                                    Selecionar Todos
+                                </Checkbox>
+                            </div>
                         ),
                     },
                     {
@@ -87,12 +88,13 @@ export default function Filter({ filtros, setFiltros, filiais, setFiliais }: Pro
                     ...filtros.map((filtro: any, index: any) => ({
                         key: `${filtro.nome}-${index}`,
                         label: (
-                            <Checkbox
-                                checked={filtro.selecionado}
-                                onChange={(e) => onChange(e, index)}
-                                onClick={preventCloseDropdown}>
-                                {filtro.nome}
-                            </Checkbox>
+                            <div onClick={preventCloseDropdown}>
+                                <Checkbox
+                                    checked={filtro.selecionado}
+                                    onChange={(e) => onChange(e, index)}>
+                                    {filtro.nome}
+                                </Checkbox>
+                            </div>
                         ),
                     })),
                 ],
@@ -105,13 +107,14 @@ export default function Filter({ filtros, setFiltros, filiais, setFiliais }: Pro
                 {
                     key: 'todos-filiais',
                     label: (
-                        <Checkbox
-                            indeterminate={!allFiliaisSelected && filiais.some((filial: any) => filial.selecionado)}
-                            checked={allFiliaisSelected}
-                            onChange={onChangeAllFiliais}
-                            onClick={preventCloseDropdown}>
-                            Selecionar Todos
-                        </Checkbox>
+                        <div onClick={preventCloseDropdown}>
+                            <Checkbox
+                                indeterminate={!allFiliaisSelected && filiais.some((filial: any) => filial.selecionado)}
+                                checked={allFiliaisSelected}
+                                onChange={onChangeAllFiliais}>
+                                Selecionar Todos
+                            </Checkbox>
+                        </div>
                     ),
                 },
                 {
@@ -121,13 +124,13 @@ export default function Filter({ filtros, setFiltros, filiais, setFiliais }: Pro
                     key: `${filial.nome}-${index}`,
                     open: true,
                     label: (
-                        <Checkbox
-                            checked={filial.selecionado}
-                            onChange={(e) => onChangeFilial(e, index)}
-                            onClick={preventCloseDropdown} // Adicione o evento onClick aqui
-                        >
-                            {filial.nome}
-                        </Checkbox>
+                        <div onClick={preventCloseDropdown}>
+                            <Checkbox
+                                checked={filial.selecionado}
+                                onChange={(e) => onChangeFilial(e, index)}>
+                                {filial.nome}
+                            </Checkbox>
+                        </div>
                     ),
                 }))
             ]
