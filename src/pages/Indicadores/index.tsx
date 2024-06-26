@@ -31,9 +31,13 @@ export default function Indicadores(props: Props) {
             for (let i = 0; i < filtrados.length; i++) {
                 filter.push(filtrados[i].nome)
             }
-            const nomes = value[0].indicadores.filter((indicador: any) => {
-                return filter.some(nomeFiltro => indicador.includes(nomeFiltro));
-            });
+            const nomes = value.reduce((acc: string[], item: any) => {
+                const indicadoresFiltrados = item.indicadores.filter((indicador: string) =>
+                    filter.some(nomeFiltro => indicador.includes(nomeFiltro))
+                );
+                return [...acc, ...indicadoresFiltrados];
+            }, []);
+
             const newValue = { ...value[0], indicadores: nomes };
             setData(newValue)
         } else {

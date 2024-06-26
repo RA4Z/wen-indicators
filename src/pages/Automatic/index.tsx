@@ -58,13 +58,15 @@ export default function Automatic(props: Props) {
                 const filtrados = props.filtros.filter((filtro: any) => filtro.selecionado === true);
                 const filter: string[] = filtrados.map((filtro: any) => filtro.nome);
 
-                // Aplica o filtro aos indicadores do país
-                const indicadoresFiltrados = filteredIndicators[0].indicadores.filter((indicador: any) => {
-                    return filter.some(nomeFiltro => indicador.includes(nomeFiltro));
-                });
+                const nomes = filteredIndicators.reduce((acc: string[], item: any) => {
+                    const indicadoresFiltrados = item.indicadores.filter((indicador: string) =>
+                        filter.some(nomeFiltro => indicador.includes(nomeFiltro))
+                    );
+                    return [...acc, ...indicadoresFiltrados];
+                }, []);
 
                 // Adiciona os indicadores filtrados ao array 'ind'
-                indicadoresFiltrados.forEach((indicador: any) => {
+                nomes.forEach((indicador: any) => {
                     ind.push({ country: country, indicador: indicador });
                 });
             }

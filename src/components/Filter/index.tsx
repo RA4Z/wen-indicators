@@ -52,7 +52,7 @@ export default function Filter({ filtros, setFiltros, filiais, setFiliais }: Pro
         {
             key: 'sub2',
             icon: <AppstoreOutlined />,
-            label: 'Filiais',
+            label: 'Empresas',
             children: filiais.map((filial: any, index: any) => ({
                 key: index.toString(), // Use o índice como chave
                 label: (

@@ -48,7 +48,6 @@ export default function MapaMundi() {
 
     useEffect(() => {
         async function getData() {
-            console.log(await getIndicadores())
             setIndicators(await getIndicadores())
             setDatabase(await getDatabase())
         }
