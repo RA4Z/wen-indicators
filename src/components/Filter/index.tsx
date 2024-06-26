@@ -3,7 +3,7 @@ import Logo from 'assets/logo.png'
 import { Dropdown } from 'antd';
 import { Checkbox } from 'antd';
 import { useEffect, useState } from 'react';
-import type { MenuProps } from 'antd';
+import type { DropdownProps, GetProp, MenuProps } from 'antd';
 import { AppstoreOutlined, MailOutlined } from '@ant-design/icons'
 
 interface Props {
@@ -31,34 +31,50 @@ export default function Filter({ filtros, setFiltros, filiais, setFiliais }: Pro
         setAlterando(true)
     };
 
-    type MenuItem = Required<MenuProps>['items'][number];
+    type MenuItem = GetProp<MenuProps, 'items'>[number];
+
+    const handleOpenChange: DropdownProps['onOpenChange'] = (nextOpen, info) => {
+        if (info.source === 'trigger' || nextOpen) {
+            setOpen(nextOpen);
+        }
+    };
+
+    // Função para evitar que o dropdown feche ao clicar em um checkbox
+    const preventCloseDropdown = (e: React.MouseEvent) => {
+        e.stopPropagation();
+    };
 
     const items: MenuItem[] = [
         {
-            key: 'sub1',
+            key: 'Indicadores',
             icon: <MailOutlined />,
             label: 'Indicadores',
             children: filtros.map((filtro: any, index: any) => ({
-                key: index.toString(), // Use o índice como chave
+                key: `${filtro.nome}-${index}`,
                 label: (
                     <Checkbox
-                        checked={filtro.selecionado} // Define o estado do Checkbox
-                        onChange={(e) => onChange(e, index)}>
+                        checked={filtro.selecionado}
+                        onChange={(e) => onChange(e, index)}
+                        onClick={preventCloseDropdown} // Adicione o evento onClick aqui
+                    >
                         {filtro.nome}
                     </Checkbox>
                 ),
             })),
         },
         {
-            key: 'sub2',
+            key: 'Empresas',
             icon: <AppstoreOutlined />,
             label: 'Empresas',
             children: filiais.map((filial: any, index: any) => ({
-                key: index.toString(), // Use o índice como chave
+                key: `${filial.nome}-${index}`,
+                open: true,
                 label: (
                     <Checkbox
-                        checked={filial.selecionado} // Define o estado do Checkbox
-                        onChange={(e) => onChangeFilial(e, index)}>
+                        checked={filial.selecionado}
+                        onChange={(e) => onChangeFilial(e, index)}
+                        onClick={preventCloseDropdown} // Adicione o evento onClick aqui
+                    >
                         {filial.nome}
                     </Checkbox>
                 ),
@@ -119,9 +135,10 @@ export default function Filter({ filtros, setFiltros, filiais, setFiliais }: Pro
 
     return (
         <>
-            <Dropdown menu={{ items }} placement="topLeft" arrow={{ pointAtCenter: true }} open={open}>
-                <img title='Projeto Desenvolvido e Prototipado por Robert Aron Zimmermann'
-                    onClick={() => setOpen(!open)} src={Logo} className={styles.logo} alt='Ícone da WEG' />
+            <Dropdown menu={{ items }} placement="topLeft" arrow={{ pointAtCenter: true }} open={open}
+                onOpenChange={handleOpenChange}>
+                <img onClick={(e) => e.preventDefault()} title='Projeto Desenvolvido e Prototipado por Robert Aron Zimmermann'
+                    src={Logo} className={styles.logo} alt='Ícone da WEG' />
             </Dropdown>
         </>
     )
