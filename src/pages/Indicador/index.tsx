@@ -3,6 +3,7 @@ import { Modal } from "antd"
 import PlanvsReal from "./Charts/PlanvsReal";
 import { useEffect, useState } from "react";
 
+import Alemanha from 'images/bandeira alemanha.png'
 import Africa from 'images/bandeira africa.png'
 import Brasil from 'images/bandeira brasil.png'
 import China from 'images/bandeira china.png'
@@ -35,6 +36,7 @@ export default function Indicador(props: Props) {
         let valor: any = props.database.filter((value: any) => value.indicador === props.nome)[0]
         if (valor === undefined) valor = props.database.filter((value: any) => value.Concatenar === props.nome)[0]
         setData(valor)
+        if (props.country === 'Germany') setCountryImage(Alemanha)
         if (props.country === 'South Africa') setCountryImage(Africa)
         if (props.country === 'Brazil') setCountryImage(Brasil)
         if (props.country === 'China') setCountryImage(China)

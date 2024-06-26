@@ -3,6 +3,7 @@ import India from 'assets/india.png'
 import USA from 'assets/estados-unidos.png'
 import Portugal from 'assets/portugal.png'
 import China from 'assets/china.png'
+import Alemanha from 'assets/alemanha.png'
 import Africa from 'assets/africa-do-sul.png'
 
 export const wegs = [
@@ -47,5 +48,12 @@ export const wegs = [
         longitude: 120.7194416,
         tamanho: 10,
         image: China
+    },
+    {
+        name: 'Germany',
+        latitude: 52.3860555,
+        longitude: 11.1768541,
+        tamanho: 10,
+        image: Alemanha
     },
 ]

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 import Africa from 'images/bandeira africa.png'
 import Global from 'images/global.png'
+import Alemanha from 'images/bandeira alemanha.png'
 import Brasil from 'images/bandeira brasil.png'
 import PlanvsReal from "pages/Indicador/Charts/PlanvsReal";
 import China from 'images/bandeira china.png'
@@ -47,10 +48,11 @@ export default function Automatic(props: Props) {
         { country: 'South Africa', image: Africa },
         { country: 'China', image: China },
         { country: 'India', image: India },
+        { country: 'Germany', image: Alemanha },
         { country: 'Portugal', image: Portugal }]
 
     useEffect(() => {
-        const countries = ['Global', 'Brazil', 'United States', 'India', 'South Africa', 'China', 'Portugal'];
+        const countries = ['Global', 'Brazil', 'United States', 'India', 'South Africa', 'China', 'Portugal', 'Germany'];
         let ind: DataItem[] = [];
 
         countries.forEach((country) => {

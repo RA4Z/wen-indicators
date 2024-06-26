@@ -63,6 +63,10 @@ export default function MapaMundi() {
         {
             nome: 'WNT',
             selecionado: true
+        },
+        {
+            nome: 'KANNIS',
+            selecionado: true
         }
     ])
 
