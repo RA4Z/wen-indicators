@@ -3,6 +3,7 @@ import { Modal, Carousel } from "antd"
 import { useEffect, useState } from "react";
 
 import Africa from 'images/bandeira africa.png'
+import Global from 'images/global.png'
 import Brasil from 'images/bandeira brasil.png'
 import PlanvsReal from "pages/Indicador/Charts/PlanvsReal";
 import China from 'images/bandeira china.png'
@@ -40,6 +41,7 @@ export default function Automatic(props: Props) {
     const [data, setData] = useState<DataItem[]>()
 
     const countryImage = [
+        { country: 'Global', image: Global },
         { country: 'Brazil', image: Brasil },
         { country: 'United States', image: USA },
         { country: 'South Africa', image: Africa },
@@ -48,7 +50,7 @@ export default function Automatic(props: Props) {
         { country: 'Portugal', image: Portugal }]
 
     useEffect(() => {
-        const countries = ['Brazil', 'United States', 'India', 'South Africa', 'China', 'Portugal'];
+        const countries = ['Global', 'Brazil', 'United States', 'India', 'South Africa', 'China', 'Portugal'];
         let ind: DataItem[] = [];
 
         countries.forEach((country) => {

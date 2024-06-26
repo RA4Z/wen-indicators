@@ -29,6 +29,10 @@ export default function MapaMundi() {
     ])
     const [filiais, setFiliais] = useState([
         {
+            nome: 'GLOBAL',
+            selecionado: true
+        },
+        {
             nome: 'JGS',
             selecionado: true
         },
