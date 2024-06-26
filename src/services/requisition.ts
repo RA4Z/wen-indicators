@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export async function getIndicadores(setDisabledError: any) {
+export async function getIndicadores() {
     try {
         const url = 'http://10.1.43.24:5000/wen_indicators';
         const response = await axios.get(url, {
@@ -15,7 +15,6 @@ export async function getIndicadores(setDisabledError: any) {
         }
     } catch {
         console.log('Erro ao conectar com o servidor!')
-        setDisabledError(true)
         return []
     }
 }

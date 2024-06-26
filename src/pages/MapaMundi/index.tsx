@@ -74,7 +74,9 @@ export default function MapaMundi() {
 
     useEffect(() => {
         async function getData() {
-            setIndicators(await getIndicadores(setDisabledError))
+            const indicadores = await getIndicadores()
+            if(indicadores.length === 0) setDisabledError(true)
+            setIndicators(indicadores)
             setDatabase(await getDatabase())
         }
         getData()
