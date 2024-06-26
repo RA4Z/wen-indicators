@@ -16,8 +16,8 @@ interface Props {
 export default function Filter({ filtros, setFiltros, filiais, setFiliais }: Props) {
     const [open, setOpen] = useState(false)
     const [alterando, setAlterando] = useState(false)
-    const [allFiltrosSelected, setAllFiltrosSelected] = useState(false);
-    const [allFiliaisSelected, setAllFiliaisSelected] = useState(false);
+    const [allFiltrosSelected, setAllFiltrosSelected] = useState(filtros.every((filtro: any) => filtro.selecionado));
+    const [allFiliaisSelected, setAllFiliaisSelected] = useState(filiais.every((filial: any) => filial.selecionado));
 
     const onChange = (e: any, index: any) => {
         const novosFiltros = [...filtros];
