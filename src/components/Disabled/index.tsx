@@ -1,5 +1,4 @@
 import { Modal } from "antd";
-import { useState } from "react";
 import SiteIMG from './images/site.png'
 import PermissionIMG from './images/permission.png'
 import ConfigIMG from './images/config.png'
@@ -7,22 +6,21 @@ import { Divider } from 'antd';
 
 interface Props {
     open: boolean
+    setOpen: any
 }
 
 export default function Disabled(props: Props) {
-    const [isModalOpen, setIsModalOpen] = useState(props.open);
-
     const handleOk = () => {
-        setIsModalOpen(false);
+        props.setOpen(false);
     };
 
     const handleCancel = () => {
-        setIsModalOpen(false);
+        props.setOpen(false);
     };
     return (
         <>
             <Modal title="Erro de conexão com o servidor, siga o passo a passo abaixo:"
-                open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+                open={props.open} onOk={handleOk} onCancel={handleCancel}>
 
                 <li>Acesse as informações do Site</li>
                 <img style={{ width: '100%' }} src={SiteIMG} alt="Imagem mostrando endereço do Site" />
