@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import ApexCharts from 'apexcharts'
 import { formatoMoneyBR } from 'utils';
+import styles from './Charts.module.scss'
 
 interface Props {
     name: string
@@ -118,7 +119,11 @@ export default function Estoques(props: Props) {
                 y: {
                     formatter: function (y: any) {
                         if (typeof y !== "undefined" && y !== null) {
-                            return formatoMoneyBR.format(y.toFixed(0));
+                            if (!props.name.includes('Turns')) {
+                                return formatoMoneyBR.format(y.toFixed(0));
+                            } else {
+                                return y.toFixed(2)
+                            }
                         }
                         return y;
 
@@ -137,6 +142,7 @@ export default function Estoques(props: Props) {
 
     return (
         <>
+            <div className={styles.meta}>Target: <div style={{color:'#FF0000'}}>{props.name.includes('Turns') ? props.data.target[12].toFixed(2) : formatoMoneyBR.format(props.data.target[12])}</div></div>
             <div id="chart" ref={chartRef} />
         </>
     )
