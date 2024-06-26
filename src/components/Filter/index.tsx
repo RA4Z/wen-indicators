@@ -16,12 +16,22 @@ interface Props {
 export default function Filter({ filtros, setFiltros, filiais, setFiliais }: Props) {
     const [open, setOpen] = useState(false)
     const [alterando, setAlterando] = useState(false)
+    const [allFiltrosSelected, setAllFiltrosSelected] = useState(false);
+    const [allFiliaisSelected, setAllFiliaisSelected] = useState(false);
 
     const onChange = (e: any, index: any) => {
         const novosFiltros = [...filtros];
         novosFiltros[index].selecionado = e.target.checked;
         setFiltros(novosFiltros);
         setAlterando(true)
+        setAllFiltrosSelected(novosFiltros.every((filtro) => filtro.selecionado));
+    };
+
+    const onChangeAllFiltros = (e: any) => {
+        const novosFiltros = filtros.map((filtro: any) => ({ ...filtro, selecionado: e.target.checked }));
+        setFiltros(novosFiltros);
+        setAllFiltrosSelected(e.target.checked);
+        setAlterando(true);
     };
 
     const onChangeFilial = (e: any, index: any) => {
@@ -29,6 +39,14 @@ export default function Filter({ filtros, setFiltros, filiais, setFiliais }: Pro
         novasFiliais[index].selecionado = e.target.checked;
         setFiliais(novasFiliais);
         setAlterando(true)
+        setAllFiliaisSelected(novasFiliais.every((filial) => filial.selecionado));
+    };
+
+    const onChangeAllFiliais = (e: any) => {
+        const novasFiliais = filiais.map((filial: any) => ({ ...filial, selecionado: e.target.checked }));
+        setFiliais(novasFiliais);
+        setAllFiliaisSelected(e.target.checked);
+        setAlterando(true);
     };
 
     type MenuItem = GetProp<MenuProps, 'items'>[number];
@@ -49,36 +67,70 @@ export default function Filter({ filtros, setFiltros, filiais, setFiliais }: Pro
             key: 'Indicadores',
             icon: <MailOutlined />,
             label: 'Indicadores',
-            children: filtros.map((filtro: any, index: any) => ({
-                key: `${filtro.nome}-${index}`,
-                label: (
-                    <Checkbox
-                        checked={filtro.selecionado}
-                        onChange={(e) => onChange(e, index)}
-                        onClick={preventCloseDropdown} // Adicione o evento onClick aqui
-                    >
-                        {filtro.nome}
-                    </Checkbox>
-                ),
-            })),
+            children:
+                [
+                    {
+                        key: 'todos-filtros',
+                        label: (
+                            <Checkbox
+                                indeterminate={!allFiltrosSelected && filtros.some((filtro: any) => filtro.selecionado)}
+                                checked={allFiltrosSelected}
+                                onChange={onChangeAllFiltros}
+                                onClick={preventCloseDropdown}>
+                                Selecionar Todos
+                            </Checkbox>
+                        ),
+                    },
+                    {
+                        type: 'divider',
+                    },
+                    ...filtros.map((filtro: any, index: any) => ({
+                        key: `${filtro.nome}-${index}`,
+                        label: (
+                            <Checkbox
+                                checked={filtro.selecionado}
+                                onChange={(e) => onChange(e, index)}
+                                onClick={preventCloseDropdown}>
+                                {filtro.nome}
+                            </Checkbox>
+                        ),
+                    })),
+                ],
         },
         {
             key: 'Empresas',
             icon: <AppstoreOutlined />,
             label: 'Empresas',
-            children: filiais.map((filial: any, index: any) => ({
-                key: `${filial.nome}-${index}`,
-                open: true,
-                label: (
-                    <Checkbox
-                        checked={filial.selecionado}
-                        onChange={(e) => onChangeFilial(e, index)}
-                        onClick={preventCloseDropdown} // Adicione o evento onClick aqui
-                    >
-                        {filial.nome}
-                    </Checkbox>
-                ),
-            })),
+            children: [
+                {
+                    key: 'todos-filiais',
+                    label: (
+                        <Checkbox
+                            indeterminate={!allFiliaisSelected && filiais.some((filial: any) => filial.selecionado)}
+                            checked={allFiliaisSelected}
+                            onChange={onChangeAllFiliais}
+                            onClick={preventCloseDropdown}>
+                            Selecionar Todos
+                        </Checkbox>
+                    ),
+                },
+                {
+                    type: 'divider',
+                },
+                ...filiais.map((filial: any, index: any) => ({
+                    key: `${filial.nome}-${index}`,
+                    open: true,
+                    label: (
+                        <Checkbox
+                            checked={filial.selecionado}
+                            onChange={(e) => onChangeFilial(e, index)}
+                            onClick={preventCloseDropdown} // Adicione o evento onClick aqui
+                        >
+                            {filial.nome}
+                        </Checkbox>
+                    ),
+                }))
+            ]
         },
     ];
 
