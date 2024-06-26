@@ -41,7 +41,23 @@ export default function MapaMundi() {
             selecionado: true
         },
         {
-            nome: 'TGM',
+            nome: 'EOL',
+            selecionado: true
+        },
+        {
+            nome: 'WII',
+            selecionado: true
+        },
+        {
+            nome: 'WEM',
+            selecionado: true
+        },
+        {
+            nome: 'WPT',
+            selecionado: true
+        },
+        {
+            nome: 'WNT',
             selecionado: true
         }
     ])
@@ -62,9 +78,9 @@ export default function MapaMundi() {
 
     return (
         <header className={styles.app}>
-            <Automatic indicadores={indicators} database={database} automatic={automatic} filtros={filtros} />
+            <Automatic filiais={filiais} indicadores={indicators} database={database} automatic={automatic} filtros={filtros} />
 
-            <Indicadores indicators={indicators} country={country} isModalOpen={isModalOpen} filtros={filtros}
+            <Indicadores filiais={filiais} indicators={indicators} country={country} isModalOpen={isModalOpen} filtros={filtros}
                 setIsModalOpen={setIsModalOpen} setIsIndicadorOpen={setIsIndicadorOpen} setIndicador={setIndicador} />
 
             <Indicador database={database} country={country}

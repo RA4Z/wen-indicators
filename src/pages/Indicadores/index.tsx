@@ -9,7 +9,8 @@ interface Props {
     setIsModalOpen: any
     setIndicador: any,
     setIsIndicadorOpen: any,
-    filtros: any
+    filtros: any,
+    filiais: any
 }
 
 export default function Indicadores(props: Props) {
@@ -27,11 +28,13 @@ export default function Indicadores(props: Props) {
         const value = props.indicators.filter((indicator: any) => indicator.id === props.country)
         if (value.length > 0) {
             const filtrados = props.filtros.filter((filtro: any) => filtro.selecionado === true)
-            let filter: any[] = []
-            for (let i = 0; i < filtrados.length; i++) {
-                filter.push(filtrados[i].nome)
-            }
-            const nomes = value.reduce((acc: string[], item: any) => {
+            const filiais = props.filiais.filter((filial: any) => filial.selecionado === true)
+
+            const filter: string[] = filtrados.map((filtro: any) => filtro.nome);
+            const filial: string[] = filiais.map((filial: any) => filial.nome);
+            
+            const selected_filial = value.filter((indicador:any) => filial.includes(indicador.empresa))
+            const nomes = selected_filial.reduce((acc: string[], item: any) => {
                 const indicadoresFiltrados = item.indicadores.filter((indicador: string) =>
                     filter.some(nomeFiltro => indicador.includes(nomeFiltro))
                 );
@@ -43,7 +46,7 @@ export default function Indicadores(props: Props) {
         } else {
             setData(value[0])
         }
-    }, [props.filtros, props.country, props.indicators])
+    }, [props.filtros, props.country, props.indicators, props.filiais])
 
     function selecionarIndicador(nome: string) {
         props.setIsModalOpen(false);

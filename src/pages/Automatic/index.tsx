@@ -16,6 +16,7 @@ interface Props {
     indicadores: any
     automatic: boolean
     filtros: any
+    filiais: any
 }
 
 interface DataItem {
@@ -56,9 +57,13 @@ export default function Automatic(props: Props) {
             if (filteredIndicators.length > 0) {
                 // Verifica se encontrou indicadores para o país
                 const filtrados = props.filtros.filter((filtro: any) => filtro.selecionado === true);
-                const filter: string[] = filtrados.map((filtro: any) => filtro.nome);
+                const filiais = props.filiais.filter((filial: any) => filial.selecionado === true)
 
-                const nomes = filteredIndicators.reduce((acc: string[], item: any) => {
+                const filter: string[] = filtrados.map((filtro: any) => filtro.nome);
+                const filial: string[] = filiais.map((filial: any) => filial.nome);
+
+                const selected_filial = filteredIndicators.filter((indicador:any) => filial.includes(indicador.empresa))
+                const nomes = selected_filial.reduce((acc: string[], item: any) => {
                     const indicadoresFiltrados = item.indicadores.filter((indicador: string) =>
                         filter.some(nomeFiltro => indicador.includes(nomeFiltro))
                     );
@@ -72,7 +77,7 @@ export default function Automatic(props: Props) {
             }
             setData(ind);
         });
-    }, [props.indicadores, props.filtros]);
+    }, [props.indicadores, props.filtros, props.filiais]);
 
     return (
         <>
