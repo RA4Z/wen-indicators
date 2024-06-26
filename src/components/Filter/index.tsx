@@ -16,8 +16,8 @@ interface Props {
 export default function Filter({ filtros, setFiltros, filiais, setFiliais }: Props) {
     const [open, setOpen] = useState(false)
     const [alterando, setAlterando] = useState(false)
-    const [allFiltrosSelected, setAllFiltrosSelected] = useState(filtros.every((filtro: any) => filtro.selecionado));
-    const [allFiliaisSelected, setAllFiliaisSelected] = useState(filiais.every((filial: any) => filial.selecionado));
+    const [allFiltrosSelected, setAllFiltrosSelected] = useState(false);
+    const [allFiliaisSelected, setAllFiliaisSelected] = useState(false);
 
     const onChange = (e: any, index: any) => {
         const novosFiltros = [...filtros];
@@ -142,6 +142,7 @@ export default function Filter({ filtros, setFiltros, filiais, setFiliais }: Pro
 
         if (info) {
             const parsedInfo = JSON.parse(info);
+            setAllFiltrosSelected(parsedInfo.every((info: any) => info.selecionado));
 
             // Atualiza o estado 'filtros' com o novo array mapeado
             setFiltros(filtros.map((filtro: any) => {
@@ -161,6 +162,7 @@ export default function Filter({ filtros, setFiltros, filiais, setFiliais }: Pro
         const filialLocal = localStorage.getItem('filiais_ativas');
         if (filialLocal) {
             const parsedInfo = JSON.parse(filialLocal);
+            setAllFiliaisSelected(parsedInfo.every((info: any) => info.selecionado));
 
             // Atualiza o estado 'filiais' com o novo array mapeado
             setFiliais(filiais.map((filial: any) => {
