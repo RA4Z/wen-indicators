@@ -21,6 +21,10 @@ export default function MapaMundi() {
     const [indicators, setIndicators] = useState([])
     const [filtros, setFiltros] = useState([
         {
+            nome: 'Atendimento das OVs',
+            selecionado: true
+        },
+        {
             nome: 'Inventory*',
             selecionado: true
         },
@@ -48,6 +52,10 @@ export default function MapaMundi() {
         },
         {
             nome: 'EOL',
+            selecionado: true
+        },
+        {
+            nome: 'TGM',
             selecionado: true
         },
         {

@@ -11,6 +11,7 @@ import India from 'images/bandeira india.png'
 import Portugal from 'images/bandeira portugal.png'
 import USA from 'images/bandeira usa.png'
 import Estoques from "./Charts/Estoques";
+import OVs from "./Charts/OVs";
 
 interface Props {
     database: any
@@ -34,7 +35,7 @@ export default function Indicador(props: Props) {
 
     useEffect(() => {
         let valor: any = props.database.filter((value: any) => value.indicador === props.nome)[0]
-        if (valor === undefined) valor = props.database.filter((value: any) => value.Concatenar === props.nome)[0]
+        if (valor === undefined) valor = props.database.filter((value: any) => value.Concatenar === props.nome || value.Indicador === props.nome)[0]
         setData(valor)
         if (props.country === 'Germany') setCountryImage(Alemanha)
         if (props.country === 'South Africa') setCountryImage(Africa)
@@ -58,6 +59,7 @@ export default function Indicador(props: Props) {
                     footer={[]}>
                     {props.nome.includes('Planejado vs Realizado') && <PlanvsReal data={data} />}
                     {props.nome.includes('Inventory') && <Estoques name={props.nome} data={data} />}
+                    {props.nome.includes('Atendimento das OVs') && <OVs name={props.nome} data={data} />}
                 </Modal>}
         </>
     )
