@@ -60,12 +60,12 @@ export default function Estoques(props: Props) {
                 stacked: false,
             },
             stroke: {
-                width: [0, 2, 2, 5],
+                width: [2, 2, 2, 2],
                 curve: 'smooth'
             },
             plotOptions: {
                 bar: {
-                    columnWidth: '50%'
+                    columnWidth: '60%'
                 }
             },
             fill: {
@@ -142,7 +142,7 @@ export default function Estoques(props: Props) {
 
     return (
         <>
-            <div className={styles.meta}>Target: <div style={{color:'#FF0000'}}>{props.name.includes('Turns') ? props.data.target[12].toFixed(1) : formatoMoneyBR.format(props.data.target[12])}</div></div>
+            <div className={styles.meta}>Target: <div style={{ color: '#FF0000' }}>{props.name.includes('Turns') ? props.data.target[12].toFixed(1) : formatoMoneyBR.format(props.data.target[12])}</div></div>
             <div id="chart" ref={chartRef} />
         </>
     )
