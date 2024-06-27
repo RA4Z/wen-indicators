@@ -47,7 +47,7 @@ export default function MapaMundi() {
             selecionado: true
         },
         {
-            nome: 'HISA',
+            nome: 'WTB',
             selecionado: true
         },
         {

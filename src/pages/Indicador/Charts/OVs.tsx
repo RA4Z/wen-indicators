@@ -72,7 +72,7 @@ export default function OVs(props: Props) {
                 enabledOnSeries: [0, 1],
                 formatter: function (val: any) { // <<< Adicione o formatter aqui
                     if (val > 0) {
-                        return val.toFixed(2) * 100 + '%'
+                        return (val * 100).toFixed(2) + '%'
                     }
                 }
             },
@@ -85,7 +85,7 @@ export default function OVs(props: Props) {
                 labels: { // <<< Adicione esta seção para formatar os labels do eixo Y
                     formatter: function (val: any) {
                         if (val > 0) {
-                            return val.toFixed(2) * 100 + '%'
+                            return val * 100 + '%'
                         }
                     }
                 }
@@ -96,7 +96,7 @@ export default function OVs(props: Props) {
                 y: {
                     formatter: function (y: any) {
                         if (typeof y !== "undefined" && y !== null) {
-                            return y.toFixed(2) * 100 + '%'
+                            return (y * 100).toFixed(2) + '%'
                         }
                         return y;
 
@@ -115,7 +115,7 @@ export default function OVs(props: Props) {
 
     return (
         <>
-            <div className={styles.meta}>Target: <div style={{ color: '#FF0000' }}>{props.data.Meta > 0 ? props.data.Meta.toFixed(2) * 100 + '%' : '0%'}</div></div>
+            <div className={styles.meta}>Target: <div style={{ color: '#FF0000' }}>{props.data.Meta > 0 ? (props.data.Meta * 100).toFixed(2) + '%' : '0%'}</div></div>
             <div id="chart" ref={chartRef} />
         </>
     )
