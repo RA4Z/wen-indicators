@@ -11,7 +11,7 @@ function App() {
 
       setTimeout(() => {
         setShowContainer(false); // Ocultar a container após 20 segundos
-      }, 20000);
+      }, 40000);
     }, 300000);
 
     return () => clearInterval(interval); // Limpar o intervalo quando o componente for desmontado
