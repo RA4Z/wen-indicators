@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export async function getIndicadores() {
     try {
-        const url = 'http://10.1.43.63:5000/wen_indicators';
+        const url = 'http://10.1.43.63:5000/WenIndicators/Indicators/Display';
         const response = await axios.get(url, {
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         });
@@ -21,7 +21,7 @@ export async function getIndicadores() {
 
 export async function getDatabase() {
     try {
-        const url = 'http://10.1.43.63:5000/wen_database';
+        const url = 'http://10.1.43.63:5000/WenIndicators/Database/Display';
         const response = await axios.get(url, {
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         });
