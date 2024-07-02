@@ -58,6 +58,11 @@ export default function Tabela(props: Props) {
                     const outputValue = indicadorAtual ? (indicador !== 'Atendimento das OVs' ? (Number(text) === 0 ? 100 : Number(text))
                         : Number((indicadorAtual.average * 100).toFixed(2))) : 0
 
+                    let color = '#52c41a'
+                    if (outputValue < 100) color = '#1677ff'
+                    if (outputValue < 80) color = '#e3ac14'
+                    if (outputValue < 60) color = '#ff4d4f'
+
                     let tooltipContent; // Variável para o conteúdo do tooltip
                     if (indicadorAtual) {
                         if (indicador === "Atendimento das OVs") {
@@ -105,7 +110,7 @@ export default function Tabela(props: Props) {
                                 }}
                             >
                                 <Tooltip title={tooltipContent} color='blue'>
-                                    {text && <Progress type="circle" percent={outputValue} />}
+                                    {text && <Progress type="circle" percent={outputValue} strokeColor={color} />}
                                 </Tooltip>
                             </Space>
                         </div>
