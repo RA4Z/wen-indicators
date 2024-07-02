@@ -1,6 +1,7 @@
 import { Modal } from 'antd'
 import styles from './Indicador.module.scss'
 import { useEffect, useState } from 'react'
+import Tabela from './Tabela'
 
 interface Props {
     country: string
@@ -10,7 +11,8 @@ interface Props {
     setIndicador: any,
     setIsIndicadorOpen: any,
     filtros: any,
-    filiais: any
+    filiais: any,
+    database: any
 }
 
 export default function Indicadores(props: Props) {
@@ -32,8 +34,8 @@ export default function Indicadores(props: Props) {
 
             const filter: string[] = filtrados.map((filtro: any) => filtro.nome);
             const filial: string[] = filiais.map((filial: any) => filial.nome);
-            
-            const selected_filial = value.filter((indicador:any) => filial.includes(indicador.empresa))
+
+            const selected_filial = value.filter((indicador: any) => filial.includes(indicador.empresa))
             const nomes = selected_filial.reduce((acc: string[], item: any) => {
                 const indicadoresFiltrados = item.indicadores.filter((indicador: string) =>
                     filter.some(nomeFiltro => indicador.includes(nomeFiltro))
@@ -56,14 +58,26 @@ export default function Indicadores(props: Props) {
 
     return (
         <>
-            {data && <Modal title={`Indicadores ${data.country}`}
-                className={styles.modal}
-                open={props.isModalOpen} onOk={handleOk} onCancel={handleCancel}
-                footer={[]}>
-                {data.indicadores.map((indicador: any, id: any) => (
-                    <p key={id} onClick={() => selecionarIndicador(indicador)}>{indicador}</p>
-                ))}
-            </Modal>}
+            {data &&
+                <Modal width={'95vw'} title={`Indicadores ${data.country}`}
+                    className={styles.modal}
+                    open={props.isModalOpen} onOk={handleOk} onCancel={handleCancel}
+                    footer={[]}>
+                    <Tabela database={props.database}
+                        selecionarIndicador={(event: any) => selecionarIndicador(event)}
+                        country={props.country}
+                        empresas={props.filiais
+                            .filter((indicador: any) => indicador.selecionado)
+                            .map((indicador: any) => indicador.nome)}
+                        indicadores={props.filtros
+                            .filter((indicador: any) => indicador.selecionado)
+                            .map((indicador: any) => indicador.nome)} />
+
+                    {/* {data.indicadores.map((indicador: any, id: any) => (
+                        <p key={id} onClick={() => selecionarIndicador(indicador)}>{indicador}</p>
+                    ))} */}
+
+                </Modal>}
         </>
     )
 }

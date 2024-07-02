@@ -7,7 +7,7 @@ import { CaretRightOutlined, PauseOutlined } from '@ant-design/icons';
 import { Button, Tooltip, message } from 'antd';
 import Automatic from 'pages/Automatic'
 import Filter from 'components/Filter'
-import { getDatabase, getIndicadores } from 'services/requisition'
+import { getDatabase, getIndicadores, getResults } from 'services/requisition'
 import Disabled from 'components/Disabled'
 
 export default function MapaMundi() {
@@ -19,6 +19,7 @@ export default function MapaMundi() {
     const [isIndicadorOpen, setIsIndicadorOpen] = useState(false)
     const [database, setDatabase] = useState([])
     const [indicators, setIndicators] = useState([])
+    const [results, setResults] = useState([])
     const [filtros, setFiltros] = useState([
         {
             nome: 'Atendimento das OVs',
@@ -83,9 +84,10 @@ export default function MapaMundi() {
     useEffect(() => {
         async function getData() {
             const indicadores = await getIndicadores()
-            if(indicadores.length === 0) setDisabledError(true)
+            if (indicadores.length === 0) setDisabledError(true)
             setIndicators(indicadores)
             setDatabase(await getDatabase())
+            setResults(await getResults())
         }
         getData()
     }, [])
@@ -101,7 +103,7 @@ export default function MapaMundi() {
             <Disabled open={disabledError} setOpen={setDisabledError} />
             <Automatic filiais={filiais} indicadores={indicators} database={database} automatic={automatic} filtros={filtros} />
 
-            <Indicadores filiais={filiais} indicators={indicators} country={country} isModalOpen={isModalOpen} filtros={filtros}
+            <Indicadores database={results} filiais={filiais} indicators={indicators} country={country} isModalOpen={isModalOpen} filtros={filtros}
                 setIsModalOpen={setIsModalOpen} setIsIndicadorOpen={setIsIndicadorOpen} setIndicador={setIndicador} />
 
             <Indicador database={database} country={country}
