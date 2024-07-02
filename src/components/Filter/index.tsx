@@ -5,15 +5,17 @@ import { Checkbox } from 'antd';
 import { useEffect, useState } from 'react';
 import type { DropdownProps, GetProp, MenuProps } from 'antd';
 import { AppstoreOutlined, MailOutlined } from '@ant-design/icons'
+import Global from 'images/global.png'
 
 interface Props {
     filtros: any
     setFiltros: any
     filiais: any
     setFiliais: any
+    setShowResumo: any
 }
 
-export default function Filter({ filtros, setFiltros, filiais, setFiliais }: Props) {
+export default function Filter({ filtros, setFiltros, filiais, setFiliais, setShowResumo }: Props) {
     const [open, setOpen] = useState(false)
     const [alterando, setAlterando] = useState(false)
     const [allFiltrosSelected, setAllFiltrosSelected] = useState(false);
@@ -197,6 +199,7 @@ export default function Filter({ filtros, setFiltros, filiais, setFiliais }: Pro
                 <img onClick={(e) => e.preventDefault()} title='Projeto Desenvolvido e Prototipado por Robert Aron Zimmermann'
                     src={Logo} className={styles.logo} alt='Ícone da WEG' />
             </Dropdown>
+            <img src={Global} onClick={() => setShowResumo(true)} className={styles.globo} alt='Globo' />
         </>
     )
 }

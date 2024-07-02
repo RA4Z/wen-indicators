@@ -1,0 +1,13 @@
+.modal {
+    p {
+        font-size: medium;
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: bold;
+        cursor: pointer;
+        transition: .2s;
+
+        &:hover {
+            color: #3953A4;
+        }
+    }
+}

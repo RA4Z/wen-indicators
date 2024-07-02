@@ -17,19 +17,17 @@ export default function Tabela(props: Props) {
     const [database, setDatabase] = useState(
         props.database.filter(
             (value: any) =>
-                value.result !== null &&
                 value.company !== null &&
-                value.country === props.country
+                (value.country === props.country || props.country === 'Global')
         )
     );
-
+    console.log(database)
     useEffect(() => {
         setDatabase(
             props.database.filter(
                 (value: any) =>
-                    value.result !== null &&
                     value.company !== null &&
-                    value.country === props.country
+                    (value.country === props.country || props.country === 'Global')
             )
         );
     }, [props.country, props.database]);
@@ -55,13 +53,14 @@ export default function Tabela(props: Props) {
                 render: (text: string, record: any) => {
                     const indicador = record.indicador;
                     const indicadorAtual = database.find(
-                        (item) => item.indicator === indicador && empresa === item.company
-                    );
+                        (item) => item.indicator === indicador && empresa === item.company);
+                    const outputValue = indicadorAtual ? (indicador !== 'Atendimento das OVs' ? (Number(text) === 0 ? 100 : Number(text))
+                        : Number((indicadorAtual.average * 100).toFixed(2))) : 0
                     return (
                         <div
                             onClick={() => {
                                 if (indicadorAtual) {
-                                    props.selecionarIndicador(indicadorAtual.title);
+                                    props.country ? props.selecionarIndicador(indicadorAtual.title, indicadorAtual.country) : props.selecionarIndicador(indicadorAtual.title)
                                 }
                             }}
                         >
@@ -75,7 +74,7 @@ export default function Tabela(props: Props) {
                                     cursor: "pointer",
                                 }}
                             >
-                                {text && <Progress type="circle" percent={Number(text)} />}
+                                {text && <Progress type="circle" percent={outputValue} />}
                             </Space>
                         </div>
                     );

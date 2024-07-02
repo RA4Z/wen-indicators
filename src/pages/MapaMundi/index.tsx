@@ -9,9 +9,11 @@ import Automatic from 'pages/Automatic'
 import Filter from 'components/Filter'
 import { getDatabase, getIndicadores, getResults } from 'services/requisition'
 import Disabled from 'components/Disabled'
+import Resumo from 'pages/Automatic/Resumo'
 
 export default function MapaMundi() {
     const [disabledError, setDisabledError] = useState(false)
+    const [showResumo, setShowResumo] = useState(false)
     const [automatic, setAutomatic] = useState(false)
     const [country, setCountry] = useState('')
     const [indicador, setIndicador] = useState('')
@@ -103,6 +105,9 @@ export default function MapaMundi() {
             <Disabled open={disabledError} setOpen={setDisabledError} />
             <Automatic filiais={filiais} indicadores={indicators} database={database} automatic={automatic} filtros={filtros} />
 
+            <Resumo setCountry={setCountry} database={results} filiais={filiais} isModalOpen={showResumo} filtros={filtros}
+                setIsModalOpen={setShowResumo} setIsIndicadorOpen={setIsIndicadorOpen} setIndicador={setIndicador} />
+
             <Indicadores database={results} filiais={filiais} indicators={indicators} country={country} isModalOpen={isModalOpen} filtros={filtros}
                 setIsModalOpen={setIsModalOpen} setIsIndicadorOpen={setIsIndicadorOpen} setIndicador={setIndicador} />
 
@@ -110,7 +115,7 @@ export default function MapaMundi() {
                 nome={indicador} isIndicadorOpen={isIndicadorOpen} setIsIndicadorOpen={setIsIndicadorOpen} />
 
             <MapChart selectCountry={selectCountry} />
-            <Filter filtros={filtros} setFiltros={setFiltros} filiais={filiais} setFiliais={setFiliais} />
+            <Filter filtros={filtros} setFiltros={setFiltros} filiais={filiais} setFiliais={setFiliais} setShowResumo={setShowResumo} />
 
             <Tooltip title={automatic ? 'Pausar Exibição' : 'Iniciar Exibição'} color='geekblue'>
                 <Button icon={automatic ? <PauseOutlined /> : <CaretRightOutlined />}
