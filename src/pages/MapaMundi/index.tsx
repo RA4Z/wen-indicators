@@ -24,7 +24,7 @@ export default function MapaMundi() {
     const [results, setResults] = useState([])
     const [filtros, setFiltros] = useState([
         {
-            nome: 'Atendimento das OVs',
+            nome: 'On time Delivery',
             selecionado: true
         },
         {
@@ -117,12 +117,12 @@ export default function MapaMundi() {
             <MapChart selectCountry={selectCountry} />
             <Filter filtros={filtros} setFiltros={setFiltros} filiais={filiais} setFiliais={setFiliais} setShowResumo={setShowResumo} />
 
-            <Tooltip title={automatic ? 'Pausar Exibição' : 'Iniciar Exibição'} color='geekblue'>
+            <Tooltip title={automatic ? 'Pause Exhibition' : 'Start Exhibition'} color='geekblue'>
                 <Button icon={automatic ? <PauseOutlined /> : <CaretRightOutlined />}
                     className={styles.automatic} type="primary" shape="round" size='large'
                     onClick={() => {
                         setAutomatic(!automatic);
-                        message.info(automatic ? 'Exibição Automática Pausada' : 'Exibição Automática Iniciada')
+                        message.info(automatic ? 'Automatic Exhibition Paused' : 'Automatic Exhibition Started')
                     }} />
             </Tooltip>
 

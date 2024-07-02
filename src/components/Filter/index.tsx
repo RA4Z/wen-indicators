@@ -68,7 +68,7 @@ export default function Filter({ filtros, setFiltros, filiais, setFiliais, setSh
         {
             key: 'Indicadores',
             icon: <MailOutlined />,
-            label: 'Indicadores',
+            label: 'Indicators',
             children:
                 [
                     {
@@ -79,7 +79,7 @@ export default function Filter({ filtros, setFiltros, filiais, setFiliais, setSh
                                     indeterminate={!allFiltrosSelected && filtros.some((filtro: any) => filtro.selecionado)}
                                     checked={allFiltrosSelected}
                                     onChange={onChangeAllFiltros}>
-                                    Selecionar Todos
+                                    Select All
                                 </Checkbox>
                             </div>
                         ),
@@ -104,7 +104,7 @@ export default function Filter({ filtros, setFiltros, filiais, setFiliais, setSh
         {
             key: 'Empresas',
             icon: <AppstoreOutlined />,
-            label: 'Empresas',
+            label: 'Companies',
             children: [
                 {
                     key: 'todos-filiais',
@@ -114,7 +114,7 @@ export default function Filter({ filtros, setFiltros, filiais, setFiliais, setSh
                                 indeterminate={!allFiliaisSelected && filiais.some((filial: any) => filial.selecionado)}
                                 checked={allFiliaisSelected}
                                 onChange={onChangeAllFiliais}>
-                                Selecionar Todos
+                                Select All
                             </Checkbox>
                         </div>
                     ),
@@ -196,7 +196,7 @@ export default function Filter({ filtros, setFiltros, filiais, setFiliais, setSh
         <>
             <Dropdown menu={{ items }} placement="topLeft" arrow={{ pointAtCenter: true }} open={open}
                 onOpenChange={handleOpenChange}>
-                <img onClick={(e) => e.preventDefault()} title='Projeto Desenvolvido e Prototipado por Robert Aron Zimmermann'
+                <img onClick={(e) => e.preventDefault()} title='Project Developed and Prototyped by Robert Aron Zimmermann'
                     src={Logo} className={styles.logo} alt='Ícone da WEG' />
             </Dropdown>
             <img src={Global} onClick={() => setShowResumo(true)} className={styles.globo} alt='Globo' />

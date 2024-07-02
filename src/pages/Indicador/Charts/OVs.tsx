@@ -21,18 +21,18 @@ export default function OVs(props: Props) {
         var config = {
             series: [
                 {
-                    name: 'Ano Atual',
+                    name: 'Current Year',
                     type: 'column',
                     data: data,
                 },
                 {
-                    name: 'Média',
+                    name: 'Average',
                     type: 'column',
                     data: averages,
                     color: '#548235',
                 },
                 {
-                    name: 'Meta',
+                    name: 'Target',
                     type: 'line',
                     data: target,
                     color: '#FF0000'
@@ -77,9 +77,6 @@ export default function OVs(props: Props) {
                 }
             },
             yaxis: {
-                title: {
-                    text: 'Valor Estoque',
-                },
                 min: 0,
                 max: 1,
                 labels: { // <<< Adicione esta seção para formatar os labels do eixo Y

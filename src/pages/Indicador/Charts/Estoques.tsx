@@ -18,37 +18,27 @@ export default function Estoques(props: Props) {
         let last = [null, null, null, ...props.data.last];
         let target = [null, null, ...props.data.target];
 
-        // const data = [...props.data.averages, ...props.data.data]
-        //     .map((valor: any, indice: any) => ({
-        //         x: fields[indice],
-        //         y: valor !== null ? valor : 1,
-        //         fillColor: indice === 0 ? '#548235' : '#000'
-        //     }));
-
-        // 1º e 2º = #548235
-        // 3º = #2e75b6
-
         var config = {
             series: [
                 {
-                    name: 'Ano Atual',
+                    name: 'Current Year',
                     type: 'column',
                     data: data,
                 },
                 {
-                    name: 'Ano Anterior',
+                    name: 'Last Year',
                     type: 'area',
                     data: last,
                     color: '#807f7f'
                 },
                 {
-                    name: 'Média',
+                    name: 'Average',
                     type: 'column',
                     data: averages,
                     color: '#548235',
                 },
                 {
-                    name: 'Meta',
+                    name: 'Target',
                     type: 'line',
                     data: target,
                     color: '#FF0000'
@@ -97,9 +87,6 @@ export default function Estoques(props: Props) {
                 }
             },
             yaxis: {
-                title: {
-                    text: 'Valor Estoque',
-                },
                 min: 0,
                 labels: { // <<< Adicione esta seção para formatar os labels do eixo Y
                     formatter: function (val: any) {

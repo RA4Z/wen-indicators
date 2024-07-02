@@ -22,7 +22,7 @@ function App() {
       {showContainer && (
         <div className="container">
           <div className="text">
-            Desenvolvido e Prototipado por Robert Aron Zimmermann robertn@weg.net
+            Developed and Prototyped by Robert Aron Zimmermann robertn@weg.net
           </div>
         </div>
       )}

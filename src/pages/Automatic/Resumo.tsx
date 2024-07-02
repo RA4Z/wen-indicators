@@ -35,7 +35,7 @@ export default function Resumo(props: Props) {
             <Modal width={'95vw'} title={
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                     <img width={50} src={Global} alt={`Global Flag`} />
-                    <span style={{ marginLeft: 10 }}>{`Resumo Global dos Indicadores`}</span>
+                    <span style={{ marginLeft: 10 }}>{`Global Summary of Indicators`}</span>
                 </div>}
                 className={styles.modal}
                 open={props.isModalOpen} onOk={handleOk} onCancel={handleCancel}

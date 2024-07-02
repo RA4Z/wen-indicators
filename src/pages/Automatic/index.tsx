@@ -6,7 +6,6 @@ import Africa from 'images/bandeira africa.png'
 import Global from 'images/global.png'
 import Alemanha from 'images/bandeira alemanha.png'
 import Brasil from 'images/bandeira brasil.png'
-import PlanvsReal from "pages/Indicador/Charts/PlanvsReal";
 import China from 'images/bandeira china.png'
 import India from 'images/bandeira india.png'
 import Portugal from 'images/bandeira portugal.png'
@@ -95,9 +94,6 @@ export default function Automatic(props: Props) {
                                     <img width={50} src={countryImage.filter(country => country.country === item.country)[0].image} alt={`${item.country} Flag`} />
                                     <h3 style={{ marginLeft: 10 }}>{item.indicador}</h3>
                                 </div>
-                                {item.indicador.includes('Planejado vs Realizado') &&
-                                    <PlanvsReal data={props.database.filter((ind: any) => ind.indicador === item.indicador)[0]} />}
-
                                 {item.indicador.includes('Inventory') &&
                                     <Estoques name={item.indicador} data={props.database.filter((ind: any) => ind.Concatenar === item.indicador)[0]} />}
 

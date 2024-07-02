@@ -1,6 +1,5 @@
 import { Modal } from "antd"
 
-import PlanvsReal from "./Charts/PlanvsReal";
 import { useEffect, useState } from "react";
 
 import Alemanha from 'images/bandeira alemanha.png'
@@ -52,12 +51,11 @@ export default function Indicador(props: Props) {
                 <Modal title={
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                         <img width={50} src={countryImage} alt={`${props.country} Flag`} />
-                        <span style={{ marginLeft: 10 }}>{`Indicador ${props.nome}`}</span>
+                        <span style={{ marginLeft: 10 }}>{`${props.nome} Indicator`}</span>
                     </div>}
                     width={'90vw'}
                     open={props.isIndicadorOpen} onOk={handleOk} onCancel={handleCancel}
                     footer={[]}>
-                    {props.nome.includes('Planejado vs Realizado') && <PlanvsReal data={data} />}
                     {props.nome.includes('Inventory') && <Estoques name={props.nome} data={data} />}
                     {props.nome.includes('Atendimento das OVs') && <OVs name={props.nome} data={data} />}
                 </Modal>}

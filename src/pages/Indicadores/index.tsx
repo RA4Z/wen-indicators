@@ -78,7 +78,7 @@ export default function Indicadores(props: Props) {
                 <Modal width={'95vw'} title={
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                         <img width={50} src={countryImage} alt={`${data.country} Flag`} />
-                        <span style={{ marginLeft: 10 }}>{`Indicadores ${data.country}`}</span>
+                        <span style={{ marginLeft: 10 }}>{`${data.id} Indicators`}</span>
                     </div>}
                     className={styles.modal}
                     open={props.isModalOpen} onOk={handleOk} onCancel={handleCancel}
@@ -92,11 +92,6 @@ export default function Indicadores(props: Props) {
                         indicadores={props.filtros
                             .filter((indicador: any) => indicador.selecionado)
                             .map((indicador: any) => indicador.nome)} />
-
-                    {/* {data.indicadores.map((indicador: any, id: any) => (
-                        <p key={id} onClick={() => selecionarIndicador(indicador)}>{indicador}</p>
-                    ))} */}
-
                 </Modal>}
         </>
     )

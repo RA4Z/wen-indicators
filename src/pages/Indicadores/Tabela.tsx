@@ -39,7 +39,7 @@ export default function Tabela(props: Props) {
 
     const columns = [
         {
-            title: "Indicador",
+            title: "INDICATOR",
             dataIndex: "indicador",
             key: "indicador",
         },
