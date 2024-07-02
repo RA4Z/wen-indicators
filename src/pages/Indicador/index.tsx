@@ -57,7 +57,7 @@ export default function Indicador(props: Props) {
                     open={props.isIndicadorOpen} onOk={handleOk} onCancel={handleCancel}
                     footer={[]}>
                     {props.nome.includes('Inventory') && <Estoques name={props.nome} data={data} />}
-                    {props.nome.includes('Atendimento das OVs') && <OVs name={props.nome} data={data} />}
+                    {props.nome.includes('On time Delivery') && <OVs name={props.nome} data={data} />}
                 </Modal>}
         </>
     )

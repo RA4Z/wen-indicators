@@ -1,6 +1,5 @@
-import { Table, Space, Progress, Tooltip } from "antd";
+import { Table, Space, Progress } from "antd";
 import { useEffect, useState } from "react";
-import { formatoMoneyBR } from "utils";
 
 interface Props {
     database: any[];
@@ -54,7 +53,7 @@ export default function Tabela(props: Props) {
                     const indicador = record.indicador;
                     const indicadorAtual = database.find(
                         (item) => item.indicator === indicador && empresa === item.company);
-                    const outputValue = indicadorAtual ? (indicador !== 'Atendimento das OVs' ? (Number(text) === 0 ? 100 : Number(text))
+                    const outputValue = indicadorAtual ? (indicador !== 'On time Delivery' ? (Number(text) === 0 ? 100 : Number(text))
                         : Number((indicadorAtual.average * 100).toFixed(2))) : 0
 
                     let color = '#52c41a'
@@ -62,31 +61,22 @@ export default function Tabela(props: Props) {
                     if (outputValue < 80) color = '#e3ac14'
                     if (outputValue < 60) color = '#ff4d4f'
 
-                    let tooltipContent; // Variável para o conteúdo do tooltip
+                    let contentText: any;
                     if (indicadorAtual) {
-                        if (indicador === "Atendimento das OVs") {
-                            tooltipContent = (
-                                <div>
-                                    Atual: {(indicadorAtual.average * 100).toFixed(2)}%<br />
-                                    Meta: {(indicadorAtual.target * 100).toFixed(2)}%
-                                </div>
-                            );
+                        if (indicador === "On time Delivery") {
+                            contentText = <>{(indicadorAtual.average * 100).toFixed(2)}%<br />
+                                {indicadorAtual.target ? (indicadorAtual.target * 100).toFixed(2) + '%' : '-'}</>
+
                         } else if (indicador === "Inventory Turns") {
-                            tooltipContent = (
-                                <div>
-                                    Atual: {indicadorAtual.average.toFixed(1)}<br />
-                                    Meta: {indicadorAtual.target.toFixed(1)}
-                                </div>
-                            );
-                        } else if (indicador.includes("Inventory")) {
-                            tooltipContent = (
-                                <div>
-                                    Atual: {formatoMoneyBR.format(indicadorAtual.average)}<br />
-                                    Meta: {formatoMoneyBR.format(indicadorAtual.target)}
-                                </div>
-                            );
-                        } else {
-                            tooltipContent = indicadorAtual.average;
+                            contentText = <>{(indicadorAtual.average).toFixed(1)}<br /> {(indicadorAtual.target).toFixed(1)}</>
+
+                        } else if (indicador.includes("Inventory*")) {
+                            color = '#52c41a'
+                            if (outputValue >= 60) color = '#1677ff'
+                            if (outputValue >= 80) color = '#e3ac14'
+                            if (outputValue >= 100) color = '#ff4d4f'
+                            contentText = <>{(indicadorAtual.average / 1000).toFixed(2)}k<br />
+                                {indicadorAtual.target ? (indicadorAtual.target / 1000).toFixed(2) + 'k' : '-'}</>
                         }
                     }
 
@@ -108,9 +98,8 @@ export default function Tabela(props: Props) {
                                     cursor: "pointer",
                                 }}
                             >
-                                <Tooltip title={tooltipContent} color='blue'>
-                                    {text && <Progress type="circle" percent={outputValue} strokeColor={color} />}
-                                </Tooltip>
+                                {text && <Progress type="circle" format={() => contentText}
+                                    status="active" percent={outputValue} strokeColor={color} />}
                             </Space>
                         </div>
                     );
