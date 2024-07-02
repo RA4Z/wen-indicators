@@ -22,7 +22,6 @@ export default function Tabela(props: Props) {
                 (value.country === props.country || props.country === 'Global')
         )
     );
-    console.log(database)
     useEffect(() => {
         setDatabase(
             props.database.filter(
