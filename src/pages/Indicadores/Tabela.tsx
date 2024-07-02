@@ -1,4 +1,4 @@
-import { Table, Space } from "antd";
+import { Table, Space, Progress } from "antd";
 import { useEffect, useState } from "react";
 
 interface Props {
@@ -75,7 +75,7 @@ export default function Tabela(props: Props) {
                                     cursor: "pointer",
                                 }}
                             >
-                                <span>{text}</span>
+                                {text && <Progress type="circle" percent={Number(text)} />}
                             </Space>
                         </div>
                     );
@@ -90,7 +90,7 @@ export default function Tabela(props: Props) {
                 (item) => item.indicator === indicadorName && empresa === item.company
             );
             empresaValues[empresa] = rowData
-                ? (rowData.result * 100).toFixed(2) + "%"
+                ? (rowData.result * 100).toFixed(2)
                 : undefined;
         });
         return {
@@ -100,5 +100,5 @@ export default function Tabela(props: Props) {
         };
     });
 
-    return <Table columns={columns} dataSource={data} bordered />;
+    return <Table scroll={{ x: 750 }} columns={columns} dataSource={data} bordered />;
 }
