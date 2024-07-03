@@ -1,4 +1,5 @@
 import { Table, Space, Progress } from "antd";
+import styles from './Indicador.module.scss'
 import { useEffect, useState } from "react";
 
 interface Props {
@@ -64,24 +65,27 @@ export default function Tabela(props: Props) {
                     if (outputValue < 60) color = '#ff4d4f'
 
                     let contentText: any;
+                    let contentTarget: any;
                     if (indicadorAtual) {
                         if (indicador === "On time Delivery") {
-                            contentText = <>{(indicadorAtual.average * 100).toFixed(2)}%<br />
-                                {indicadorAtual.target ? (indicadorAtual.target * 100).toFixed(2) + '%' : '-'}</>
+                            contentText = `${(indicadorAtual.average * 100).toFixed(2)}%`
+                            contentTarget = indicadorAtual.target ? (indicadorAtual.target * 100).toFixed(2) + '%' : '-'
 
                         } else if (indicador === "Inventory Turns") {
-                            contentText = <>{(indicadorAtual.average).toFixed(1)}<br /> {(indicadorAtual.target).toFixed(1)}</>
+                            contentText = (indicadorAtual.average).toFixed(1)
+                            contentTarget = indicadorAtual.target ? (indicadorAtual.target).toFixed(1) : '-'
 
                         } else if (indicador.includes("Inventory*")) {
                             color = '#52c41a'
                             if (outputValue >= 60) color = '#1677ff'
                             if (outputValue >= 80) color = '#e3ac14'
                             if (outputValue >= 100) color = '#ff4d4f'
-                            contentText = <>{(indicadorAtual.average / 1000).toFixed(2)}k<br />
-                                {indicadorAtual.target ? (indicadorAtual.target / 1000).toFixed(2) + 'k' : '-'}</>
+                            contentText = `${(indicadorAtual.average / 1000).toFixed(2)}k`
+                            contentTarget = indicadorAtual.target ? (indicadorAtual.target / 1000).toFixed(2) + 'k' : '-'
 
                         } else if (indicador.includes('Efficiency')) {
-                            contentText = <>{(indicadorAtual.average * 100).toFixed(2)}%</>
+                            contentText = `${(indicadorAtual.average * 100).toFixed(2)}%`
+                            contentTarget = indicadorAtual.target ? (indicadorAtual.target * 100).toFixed(2) + '%' : '-'
 
                         } else {
                             contentText = <>{indicadorAtual.average}</>
@@ -107,8 +111,13 @@ export default function Tabela(props: Props) {
                                     cursor: "pointer",
                                 }}
                             >
-                                {text && <Progress type="circle" format={() => contentText}
-                                    status="active" percent={outputValue} strokeColor={color} />}
+                                {text &&
+                                    <>
+                                        <Progress type="circle" format={() => contentText}
+                                            status="active" percent={outputValue} strokeColor={color} />
+                                        <li className={styles.valorTarget}>{contentTarget !== '-' ? `Target: ${contentTarget}` : contentTarget}</li>
+                                    </>
+                                }
                             </Space>
                         </div>
                     );
