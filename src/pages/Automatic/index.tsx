@@ -144,9 +144,23 @@ export default function Automatic(props: Props) {
                                         )}
 
                                 </div> :
-                                    <Tabela database={props.results} country="Global"
-                                        empresas={props.filiais.filter((filial: any) => filial.selecionado === true).map((filial: any) => filial.nome)}
-                                        indicadores={[props.filtros.filter((filtro: any) => filtro.selecionado === true).map((filtro: any) => filtro.nome).find((key: string) => item.indicador.includes(key))]} />
+                                    <>
+                                        <div style={contentStyle}>
+                                            <img
+                                                width={50}
+                                                src={
+                                                    countryImage.filter(country => country.country === item.country)[0]
+                                                        .image
+                                                }
+                                                alt={`${item.country} Flag`}
+                                            />
+                                            <h3 style={{ marginLeft: 10 }}>{item.indicador}</h3>
+                                        </div>
+
+                                        <Tabela database={props.results} country="Global"
+                                            empresas={props.filiais.filter((filial: any) => filial.selecionado === true).map((filial: any) => filial.nome)}
+                                            indicadores={[props.filtros.filter((filtro: any) => filtro.selecionado === true).map((filtro: any) => filtro.nome).find((key: string) => item.indicador.includes(key))]} />
+                                    </>
                                 }
                             </div>
                         ))}
