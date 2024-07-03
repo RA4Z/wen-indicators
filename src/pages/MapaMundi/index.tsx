@@ -107,7 +107,7 @@ export default function MapaMundi() {
     return (
         <header className={styles.app}>
             <Disabled open={disabledError} setOpen={setDisabledError} />
-            <Automatic filiais={filiais} indicadores={indicators} database={database} automatic={automatic} filtros={filtros} />
+            <Automatic results={results} filiais={filiais} indicadores={indicators} database={database} automatic={automatic} filtros={filtros} />
 
             <Resumo setCountry={setCountry} database={results} filiais={filiais} isModalOpen={showResumo} filtros={filtros}
                 setIsModalOpen={setShowResumo} setIsIndicadorOpen={setIsIndicadorOpen} setIndicador={setIndicador} />

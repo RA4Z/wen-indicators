@@ -5,7 +5,7 @@ interface Props {
     database: any[];
     indicadores: string[];
     empresas: string[];
-    selecionarIndicador: any;
+    selecionarIndicador?: any;
     country?: string;
 }
 
@@ -14,6 +14,7 @@ interface DataItem {
 }
 
 export default function Tabela(props: Props) {
+    console.log(props.empresas)
     const [database, setDatabase] = useState(
         props.database.filter(
             (value: any) =>
@@ -90,7 +91,7 @@ export default function Tabela(props: Props) {
                     return (
                         <div
                             onClick={() => {
-                                if (indicadorAtual) {
+                                if (indicadorAtual && props.selecionarIndicador) {
                                     props.country ? props.selecionarIndicador(indicadorAtual.title, indicadorAtual.country)
                                         : props.selecionarIndicador(indicadorAtual.title)
                                 }
