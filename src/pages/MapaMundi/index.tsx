@@ -34,6 +34,10 @@ export default function MapaMundi() {
         {
             nome: 'Inventory Turns',
             selecionado: true
+        },
+        {
+            nome: 'Efficiency',
+            selecionado: true
         }
     ])
     const [filiais, setFiliais] = useState([

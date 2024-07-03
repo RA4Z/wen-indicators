@@ -97,7 +97,7 @@ export default function Automatic(props: Props) {
                                 {item.indicador.includes('Inventory') &&
                                     <Estoques name={item.indicador} data={props.database.filter((ind: any) => ind.Concatenar === item.indicador)[0]} />}
 
-                                {item.indicador.includes('On time Delivery') &&
+                                {(item.indicador.includes('On time Delivery') || item.indicador.includes('Efficiency') ) &&
                                     <OVs name={item.indicador} data={props.database.filter((ind: any) => ind.Indicador === item.indicador)[0]} />}
                             </div>
                         ))}

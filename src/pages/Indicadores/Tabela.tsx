@@ -53,7 +53,8 @@ export default function Tabela(props: Props) {
                     const indicador = record.indicador;
                     const indicadorAtual = database.find(
                         (item) => item.indicator === indicador && empresa === item.company);
-                    const outputValue = indicadorAtual ? (indicador !== 'On time Delivery' ? (Number(text) === 0 ? 100 : Number(text))
+                    const outputValue = indicadorAtual ? (indicador !== 'On time Delivery' && indicador !== 'Efficiency'
+                        ? (Number(text) === 0 ? 100 : Number(text))
                         : Number((indicadorAtual.average * 100).toFixed(2))) : 0
 
                     let color = '#52c41a'
@@ -77,6 +78,12 @@ export default function Tabela(props: Props) {
                             if (outputValue >= 100) color = '#ff4d4f'
                             contentText = <>{(indicadorAtual.average / 1000).toFixed(2)}k<br />
                                 {indicadorAtual.target ? (indicadorAtual.target / 1000).toFixed(2) + 'k' : '-'}</>
+
+                        } else if (indicador.includes('Efficiency')) {
+                            contentText = <>{(indicadorAtual.average * 100).toFixed(2)}%</>
+
+                        } else {
+                            contentText = <>{indicadorAtual.average}</>
                         }
                     }
 
@@ -84,7 +91,8 @@ export default function Tabela(props: Props) {
                         <div
                             onClick={() => {
                                 if (indicadorAtual) {
-                                    props.country ? props.selecionarIndicador(indicadorAtual.title, indicadorAtual.country) : props.selecionarIndicador(indicadorAtual.title)
+                                    props.country ? props.selecionarIndicador(indicadorAtual.title, indicadorAtual.country)
+                                        : props.selecionarIndicador(indicadorAtual.title)
                                 }
                             }}
                         >

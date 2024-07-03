@@ -58,6 +58,7 @@ export default function Indicador(props: Props) {
                     footer={[]}>
                     {props.nome.includes('Inventory') && <Estoques name={props.nome} data={data} />}
                     {props.nome.includes('On time Delivery') && <OVs name={props.nome} data={data} />}
+                    {props.nome.includes('Efficiency') && <OVs name={props.nome} data={data} />}
                 </Modal>}
         </>
     )
