@@ -60,14 +60,17 @@ export default function Tabela(props: Props) {
                         : Number((indicadorAtual.average * 100).toFixed(2))) : 0
 
                     let color = '#52c41a'
-                    if (outputValue < 100) color = '#1677ff'
-                    if (outputValue < 80) color = '#e3ac14'
-                    if (outputValue < 60) color = '#ff4d4f'
+                    // if (outputValue < 100) color = '#1677ff'
+                    // if (outputValue < 80) color = '#e3ac14'
+                    // if (outputValue < 60) color = '#ff4d4f'
+                    if (outputValue < 100) color = '#ff4d4f'
 
                     let contentText: any;
                     let contentTarget: any;
                     if (indicadorAtual) {
                         if (indicador === "On time Delivery") {
+                            color = '#52c41a'
+                            if (indicadorAtual.average <= indicadorAtual.target) color = '#ff4d4f'
                             contentText = `${(indicadorAtual.average * 100).toFixed(2)}%`
                             contentTarget = indicadorAtual.target ? (indicadorAtual.target * 100).toFixed(2) + '%' : '-'
 
@@ -77,8 +80,8 @@ export default function Tabela(props: Props) {
 
                         } else if (indicador.includes("Inventory*")) {
                             color = '#52c41a'
-                            if (outputValue >= 60) color = '#1677ff'
-                            if (outputValue >= 80) color = '#e3ac14'
+                            // if (outputValue >= 60) color = '#1677ff'
+                            // if (outputValue >= 80) color = '#e3ac14'
                             if (outputValue >= 100) color = '#ff4d4f'
                             contentText = `${(indicadorAtual.average / 1000).toFixed(2)}k`
                             contentTarget = indicadorAtual.target ? (indicadorAtual.target / 1000).toFixed(2) + 'k' : '-'
